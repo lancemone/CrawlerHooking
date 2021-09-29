@@ -1,13 +1,14 @@
 package com.more.crawlerhooking.hooking.common;
 
 
-import android.os.Build;
 import android.util.Log;
 
 import com.more.crawlerhooking.conf.HookingConfig;
 import com.more.crawlerhooking.conf.TiktokConfig;
-import com.more.crawlerhooking.utils.PropertiesUtils;
-import com.more.crawlerhooking.utils.SystemUtils;
+import com.more.crawlerhooking.utils.LogUtils;
+import com.orhanobut.logger.Logger;
+
+import java.net.HttpURLConnection;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedBridge;
@@ -16,15 +17,16 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class PhoneInfo {
 
-    private static final String TAG = "PhoneInfo";
+    private final String serial;
 
-    public PhoneInfo(XC_LoadPackage.LoadPackageParam loadPackageParam){
+    public PhoneInfo(XC_LoadPackage.LoadPackageParam loadPackageParam, String serial){
+        this.serial = serial;
         Telephony(loadPackageParam);
     }
 
     public void Telephony(XC_LoadPackage.LoadPackageParam loadPackageParam) {
-        String serial = SystemUtils.getDeviceSerial(loadPackageParam);
-        Log.i(TAG, "device serial number: " + serial);
+//        String serial = SystemUtils.getInstance().getDeviceSerial(loadPackageParam);
+        LogUtils.i("device serial number: " + this.serial);
         String region = null;
         String operatorCode = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
@@ -35,8 +37,13 @@ public class PhoneInfo {
         HookingTelephone(HookingConfig.TelephonyManagerClass, loadPackageParam, HookingConfig.NetworkCountryIsoMethod, region);
     }
 
+    public void changeWifiIp(){
+
+    }
+
     private void HookingTelephone(String hookClass, XC_LoadPackage.LoadPackageParam loadPkgParam,
                                   String funcName, final String value) {
+        LogUtils.i("HookingTelephone: " + funcName + "->" + value);
         try {
             XposedHelpers.findAndHookMethod(hookClass,
                     loadPkgParam.classLoader, funcName, new XC_MethodHook() {
@@ -46,12 +53,13 @@ public class PhoneInfo {
                                 throws Throwable {
                             // TODO Auto-generated method stub
                             super.afterHookedMethod(param);
+//                            LogUtils.d(TAG, "HookingTelephone result: " + funcName + "->" + value);
                             param.setResult(value);
                         }
 
                     });
         } catch (Exception e) {
-            XposedBridge.log(e);
+            LogUtils.e(e);
             e.printStackTrace();
         }
     }

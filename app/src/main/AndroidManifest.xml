@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.more.crawlerhooking">
 
-    <uses-sdk android:minSdkVersion="21"
-        tools:ignore="GradleOverrides" />
+    <uses-sdk tools:ignore="GradleOverrides" />
 
-<!--    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:name=".AppApplication"
@@ -17,10 +17,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CrawlerHooking">
 
-        <!--表明xposed模块-->
-        <meta-data android:name="xposedmodule" android:value="true"/>
-        <meta-data android:name="xposeddescription" android:value="tiktok feed hook"/>
-        <meta-data android:name="xposedminversion" android:value="53"/>
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 表明xposed模块 -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="tiktok feed hook" />
+        <meta-data
+            android:name="xposedsharedprefs"
+            android:value="true" />
+        <meta-data
+            android:name="xposedminversion"
+            android:value="53" />
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/module_scope"/>
     </application>
 
 </manifest>

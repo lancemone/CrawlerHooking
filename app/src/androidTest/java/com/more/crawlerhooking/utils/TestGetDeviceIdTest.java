@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-public class TestGetDeviceIdTest extends TestCase {
+public class TestGetDeviceIdTest {
 
     protected TestGetDeviceId testGetDeviceId;
     @Test

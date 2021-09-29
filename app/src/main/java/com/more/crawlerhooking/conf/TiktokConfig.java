@@ -6,10 +6,14 @@ public class TiktokConfig {
 
     public static String TikTokPn = "com.ss.android.ugc.trill";
     public static String AwemeClass = "com.ss.android.ugc.aweme.feed.model.Aweme";
+    public static String FeedItemListClass = "com.ss.android.ugc.aweme.feed.model.FeedItemList";
     public static String DeviceRegisterManagerClass = "com.ss.android.deviceregister.DeviceRegisterManager";
 
     public static String GetRegionMethod = "getRegion";
+    public static String GetAidMethod = "getAid";
+    public static String getFeedItemsMethod = "getItems";
     public static String GetDeviceIdMethod = "getDeviceId";
+    public static String TryWaitDeviceIdInit = "tryWaitDeviceIdInit";
 
 
     public static HashMap<String, String> SerialToRegion = new HashMap<String, String>() {{
@@ -116,5 +120,10 @@ public class TiktokConfig {
         put("7006262117138564613", "HT85N1A00536");
         put("7006262656873072134", "FA7B11A05127");
         put("7006263522904557061", "HT79V1A00338");
+    }};
+
+    public static HashMap<String, String> AndroidIdToSerial = new HashMap<String, String>(){{
+        put("7917984559f97f5c", "HT7BR1A03106");
+        put("32d8352139596ff3", "HT7BV1A01078");
     }};
 }
