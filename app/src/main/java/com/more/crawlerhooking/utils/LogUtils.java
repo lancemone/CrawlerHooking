@@ -245,11 +245,11 @@ public class LogUtils {
                 continue;
             }
             if (isThreadBreak) {
-                return "[ " + Thread.currentThread().getId() + ": \n("
+                return "[ " + "\n("
                         + st.getFileName() + ":" + st.getLineNumber() + ") "
                         + st.getMethodName() + " ]";
             } else {
-                return "[ " + Thread.currentThread().getId() + ": ("
+                return "[ " + "("
                         + st.getFileName() + ":" + st.getLineNumber() + ") "
                         + st.getMethodName() + " ]";
             }

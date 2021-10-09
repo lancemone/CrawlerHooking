@@ -9,7 +9,7 @@ android {
         applicationId "com.more.crawlerhooking"
         minSdk 21
         targetSdk 31
-        versionCode 34
+        versionCode 38
         versionName "1.0.1-${versionCode}"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

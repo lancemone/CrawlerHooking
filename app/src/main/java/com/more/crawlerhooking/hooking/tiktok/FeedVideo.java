@@ -28,14 +28,14 @@ public class FeedVideo {
     private final Gson gson = new GsonBuilder().serializeNulls().create();
 
     public FeedVideo(XC_LoadPackage.LoadPackageParam loadPackageParam, String serial){
-        Log.i(TAG, "FeedVideo hooking");
+        LogUtils.i("FeedVideo hooking");
         this.serial = serial;
         AwemeHooking(loadPackageParam);
     }
 
     public void AwemeHooking(XC_LoadPackage.LoadPackageParam loadPackageParam) {
         try {
-            Log.i(TAG,"AwemeHooking");
+            LogUtils.i("AwemeHooking");
             XposedHelpers.findAndHookMethod(TiktokConfig.AwemeClass, loadPackageParam.classLoader, TiktokConfig.GetAidMethod, new XC_MethodHook() {
 
                 @Override

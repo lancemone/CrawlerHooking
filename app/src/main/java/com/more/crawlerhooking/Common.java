@@ -7,7 +7,7 @@ public class Common {
     public static final String SerialNoKey = "serialNo";
 
 //    public static final String CrawlerReportHost = "http://crawler.more.buzz:8688";
-    public static final String CrawlerReportHost = "http://10.234.72.21:5000";
+    public static final String CrawlerReportHost = "http://10.234.72.21:8688/";
 
-    public static final String ApiReportRecords = "/api/v1/report/records/";
+    public static final String ApiReportRecords = "api/v1/report/records/";
 }

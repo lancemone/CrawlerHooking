@@ -3,6 +3,8 @@ package com.more.crawlerhooking.http.okhttp;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.Map;
+
 public class RequestMode {
 
     /**
@@ -25,18 +27,18 @@ public class RequestMode {
      * @param callback 回调接口
      * @param clazz 需要解析的实体类
      */
-    public static void postRequest(String url, RequestParams params,
+    public static void postRequest(String url, RequestParams params, Map<String, String> headers,
                                    ResponseCallback callback, Class<?> clazz) {
-        HttpClientHelper.post(CommonRequestHelper.createPostRequest(url, params),
+        HttpClientHelper.post(CommonRequestHelper.createPostRequest(url, params, headers),
                 new ResposeDataHandle(callback, clazz));
     }
 
-    public static void postRequestWithJson(String url, Object obj, ResponseCallback responseCallback, Class<?> result){
+    public static void postRequestWithJson(String url, Object obj, Map<String, String> headers, ResponseCallback responseCallback, Class<?> result){
         String json = new GsonBuilder().serializeNulls().create().toJson(obj);
-        postRequestWithJson(url, json, responseCallback, result);
+        postRequestWithJson(url, json, headers, responseCallback, result);
     }
 
-    public static void postRequestWithJson(String url, String jsonBody, ResponseCallback responseCallback,  Class<?> result){
-        HttpClientHelper.post(CommonRequestHelper.createPostRequestWithJson(url, jsonBody), new ResposeDataHandle(responseCallback, result));
+    public static void postRequestWithJson(String url, String jsonBody, Map<String, String> headers, ResponseCallback responseCallback,  Class<?> result){
+        HttpClientHelper.post(CommonRequestHelper.createPostRequestWithJson(url, jsonBody, headers), new ResposeDataHandle(responseCallback, result));
     }
 }
