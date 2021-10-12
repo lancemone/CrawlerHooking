@@ -1,21 +1,17 @@
 package com.more.crawlerhooking.ui;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.more.crawlerhooking.Common;
 import com.more.crawlerhooking.conf.TiktokConfig;
 import com.more.crawlerhooking.databinding.ActivityMainBinding;
 import com.more.crawlerhooking.utils.LogUtils;
 import com.more.crawlerhooking.utils.SPUtils;
-import com.orhanobut.logger.Logger;
 
 public class MainActivity extends AppCompatActivity {
 

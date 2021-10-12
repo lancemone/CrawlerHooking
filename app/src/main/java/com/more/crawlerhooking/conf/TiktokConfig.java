@@ -51,7 +51,7 @@ public class TiktokConfig {
         put("FA7B11A05127", "RW");
         put("HT79V1A00338", "GA");
         // test devices
-        put("HT7BV1A01078", "CD");
+        put("HT7BV1A01078", "TZ");
         put("HT85R1A00680", "ML");
     }};
 

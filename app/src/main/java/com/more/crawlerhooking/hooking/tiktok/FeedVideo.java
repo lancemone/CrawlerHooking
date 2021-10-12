@@ -22,8 +22,8 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class FeedVideo {
 
-    private final String TAG = "FeedVideo";
     private String serial = null;
+    private final String taskTurn = "hooking-tt-1";
     private static final List<String> InstanceHash = new ArrayList<>();
     private final Gson gson = new GsonBuilder().serializeNulls().create();
 
@@ -109,7 +109,7 @@ public class FeedVideo {
         // device country
         Class<?> deviceRegisterManager = XposedHelpers.findClass("com.ss.android.ugc.aweme.ak.d", param.thisObject.getClass().getClassLoader());
         String deviceCountry = (String) XposedHelpers.callStaticMethod(deviceRegisterManager, "i");;
-        ReportDataBean reportDataBean = new ReportDataBean(this.serial, aid, deviceCountry, awemeType, originDataBean);
+        ReportDataBean reportDataBean = new ReportDataBean(this.serial, aid, taskTurn, deviceCountry, awemeType, originDataBean);
         int hashcode = aid.hashCode();
         AwemeReportBean awemeReportBean = new AwemeReportBean(reportDataBean, hashcode);
         LogUtils.i("start upload aweme: " + aid);

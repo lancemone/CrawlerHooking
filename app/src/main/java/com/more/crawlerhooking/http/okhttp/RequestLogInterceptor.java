@@ -27,7 +27,8 @@ public class RequestLogInterceptor implements Interceptor {
     public Response intercept(@NonNull Chain chain) throws IOException {
         long startTime = System.currentTimeMillis();
         Request request = chain.request();
-        Response response=null;
+        Response response= chain.proceed(request);
+        MediaType mediaType = null;
         String responseBody = null;
         String responseCode = null;
         String url = null;
@@ -35,10 +36,9 @@ public class RequestLogInterceptor implements Interceptor {
         try {
             url = request.url().toString();
             requestBody = getRequestBody(request);
-            response = chain.proceed(request);
             responseBody = getResponseText(response);
             responseCode = String.valueOf(response.code());
-            MediaType mediaType = Objects.requireNonNull(response.body()).contentType();
+            mediaType = Objects.requireNonNull(response.body()).contentType();
             response = response.newBuilder().body(ResponseBody.create(responseBody, mediaType)).build();
         }catch (Exception e){
             LogUtils.e(e.getMessage());
@@ -46,32 +46,29 @@ public class RequestLogInterceptor implements Interceptor {
         finally {
             long end = System.currentTimeMillis();
             String duration = String.valueOf(end - startTime);
-            String logInfo = "http request info: ".concat(" \r\n ")
+            String logInfo = "http request info: ".concat("\n ")
                     .concat("Request Url-->：")
                     .concat(request.method())
                     .concat(" ")
                     .concat(url != null ? url : "")
-                    .concat(" \r\n ")
+                    .concat("\n ")
                     .concat("Request Header-->：")
                     .concat(getRequestHeaders(request))
-                    .concat(" \r\n ")
+                    .concat("\n ")
                     .concat("Request Parameters-->：")
                     .concat(requestBody != null ? requestBody : "")
-                    .concat(" \r\n ")
+                    .concat("\n ")
                     .concat("Response Time(ms)-->：")
                     .concat(duration)
-                    .concat(" \r\n ")
+                    .concat("\n ")
                     .concat("Response Code-->：")
                     .concat(responseCode != null ? responseCode : "")
-                    .concat(" \r\n ")
+                    .concat("\n ")
                     .concat("Response Result-->：")
                     .concat(responseBody != null ? responseBody : "");
             LogUtils.i(logInfo);
             }
-        if (response != null) {
-            return response;
-        }
-        return chain.proceed(request);
+        return response;
     }
 
     private String getResponseText(Response response){

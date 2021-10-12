@@ -61,11 +61,12 @@ public class CommonRequestHelper {
 
     public static Request createPostRequestWithJson(String url, String jsonBody, Map<String, String> headers){
         Headers.Builder mHeadersBuilder = new Headers.Builder();
+        if (headers.isEmpty())
         for (Map.Entry<String, String> entry : headers.entrySet()) {
             mHeadersBuilder.add(entry.getKey(), entry.getValue());
         }
         Headers mHeaders = mHeadersBuilder.build();
-        RequestBody requestBody = RequestBody.create(jsonBody, MediaType.parse("application/json; charset=utf-8"));
+        RequestBody requestBody = RequestBody.create(jsonBody, MediaType.parse("application/json"));
         return new Request.Builder()
                 .url(url)
                 .headers(mHeaders)

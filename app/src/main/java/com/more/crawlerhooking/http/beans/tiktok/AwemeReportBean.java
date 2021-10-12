@@ -65,6 +65,10 @@ public class AwemeReportBean {
          */
         @SerializedName("aweme_id")
         private String awemeId;
+
+        @SerializedName("task_turn")
+        private String taskTurn;
+
         /**
          * deviceCountry
          */
@@ -83,9 +87,10 @@ public class AwemeReportBean {
 
         public ReportDataBean(){}
 
-        public ReportDataBean(String deviceId, String awemeId, String deviceCountry, Integer foryou, OriginDataBean originData){
+        public ReportDataBean(String deviceId, String awemeId, String taskTurn, String deviceCountry, Integer foryou, OriginDataBean originData){
             this.deviceId = deviceId;
             this.awemeId = awemeId;
+            this.taskTurn = taskTurn;
             this.deviceCountry = deviceCountry;
             this.foryou = foryou;
             this.originData = originData;

@@ -1,5 +1,8 @@
 package com.more.crawlerhooking.http;
 
+import android.os.Build;
+
+import com.more.crawlerhooking.BuildConfig;
 import com.more.crawlerhooking.Common;
 import com.more.crawlerhooking.http.beans.tiktok.AwemeReportBean;
 import com.more.crawlerhooking.http.okhttp.OkHttpException;
@@ -18,7 +21,7 @@ public class HttpRequest {
         }
         String url = Common.CrawlerReportHost + Common.ApiReportRecords;
         Map<String, String> headers = new HashMap<String, String>();
-        headers.put("content-type", "application/json");
+        headers.put("version", BuildConfig.VERSION_NAME);
         RequestMode.postRequestWithJson(url, reportBean, headers, new ResponseCallback() {
             @Override
             public void onSuccess(Object response) {

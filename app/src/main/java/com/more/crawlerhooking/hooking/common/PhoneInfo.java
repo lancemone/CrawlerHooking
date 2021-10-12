@@ -25,7 +25,6 @@ public class PhoneInfo {
     }
 
     public void Telephony(XC_LoadPackage.LoadPackageParam loadPackageParam) {
-//        String serial = SystemUtils.getInstance().getDeviceSerial(loadPackageParam);
         LogUtils.i("device serial number: " + this.serial);
         String region = null;
         String operatorCode = null;
@@ -53,7 +52,7 @@ public class PhoneInfo {
                                 throws Throwable {
                             // TODO Auto-generated method stub
                             super.afterHookedMethod(param);
-//                            LogUtils.d(TAG, "HookingTelephone result: " + funcName + "->" + value);
+                            LogUtils.d("HookingTelephone result: " + funcName + "->" + value);
                             param.setResult(value);
                         }
 
