@@ -49,10 +49,11 @@ public class Main implements IXposedHookLoadPackage, IXposedHookZygoteInit {
             Log.i(TAG, "handleLoadPackage package: " + lpparam.packageName);
             if (lpparam.packageName.equals(TiktokConfig.TikTokPn)) {
                 String serial = prefs.getString(Common.SerialNoKey, null);
+                String taskTurn = prefs.getString(Common.TaskTurnKey, null);
                 Log.i(TAG, "serial: " + serial);
                 new PhoneInfo(lpparam, serial);
                 Log.i(TAG, "hooking Tiktok");
-                new FeedVideo(lpparam, serial);
+                new FeedVideo(lpparam, serial, taskTurn);
             }
         }catch (XposedHelpers.InvocationTargetError error) {
             Log.w(TAG, error.toString());

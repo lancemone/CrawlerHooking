@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".app.ui.home.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        android:divider="@drawable/list_item_linear_divider"
+        android:layout_marginStart="@dimen/layout_right_margin_to_start"
+        android:layout_marginEnd="@dimen/layout_lift_margin_to_end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.more.crawlerhooking.app.view.DetailInfoView
+            android:id="@+id/detail_android_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/android_id_name" />
+
+        <com.more.crawlerhooking.app.view.DetailInfoView
+            android:id="@+id/detail_serial_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            app:title="@string/serial_name"/>
+
+        <com.more.crawlerhooking.app.view.DetailInfoView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/detail_tiktok_region"
+            android:layout_marginTop="3dp"
+            app:title="@string/tiktok_region_title"/>
+
+        <com.more.crawlerhooking.app.view.DetailInfoView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:id="@+id/detail_carrier_code"
+            app:title="CarrierCode"/>
+
+        <com.more.crawlerhooking.app.view.DetailInfoView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/detail_task_turn"
+            android:layout_marginTop="3dp"
+            app:title="TaskTurn"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

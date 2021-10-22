@@ -1,4 +1,4 @@
-package com.more.crawlerhooking.ui;
+package com.more.crawlerhooking.app;
 
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -9,18 +9,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.more.crawlerhooking.Common;
 import com.more.crawlerhooking.conf.TiktokConfig;
-import com.more.crawlerhooking.databinding.ActivityMainBinding;
+import com.more.crawlerhooking.databinding.ActivityMain1Binding;
 import com.more.crawlerhooking.utils.LogUtils;
 import com.more.crawlerhooking.utils.SPUtils;
 
-public class MainActivity extends AppCompatActivity {
+public class Main1Activity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    private ActivityMain1Binding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityMain1Binding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
         String androidId = getAndroidId();

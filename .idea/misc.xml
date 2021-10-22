@@ -3,7 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Code/Android/CrawlerHooking/app/src/main/res/drawable/detail_info_view_linear_divider.xml" value="0.3964102564102564" />
+        <entry key="..\:/Code/Android/CrawlerHooking/app/src/main/res/drawable/linear_divider.xml" value="0.3509259259259259" />
+        <entry key="..\:/Code/Android/CrawlerHooking/app/src/main/res/drawable/list_item_linear_divider.xml" value="0.3964102564102564" />
         <entry key="..\:/Code/Android/CrawlerHooking/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Code/Android/CrawlerHooking/app/src/main/res/layout/app_bar_main.xml" value="0.38645833333333335" />
+        <entry key="..\:/Code/Android/CrawlerHooking/app/src/main/res/layout/content_main.xml" value="0.38645833333333335" />
+        <entry key="..\:/Code/Android/CrawlerHooking/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Code/Android/CrawlerHooking/app/src/main/res/layout/nav_header_main.xml" value="0.38645833333333335" />
+        <entry key="..\:/Code/Android/CrawlerHooking/app/src/main/res/layout/view_detail_info.xml" value="0.38645833333333335" />
       </map>
     </option>
   </component>
