@@ -75,6 +75,9 @@ public class FeedVideo {
         int videoWidth = (int) XposedHelpers.callMethod(itemVideo, "getWidth");
         int videoDuration = (int) XposedHelpers.callMethod(itemVideo, "getVideoLength");
         Object videoUrlModel = XposedHelpers.callMethod(itemVideo, "getH264PlayAddr");
+        if (videoUrlModel == null){
+            return;
+        }
         String videoUri = (String) XposedHelpers.callMethod(videoUrlModel, "getUri");
         Object videoUrlObject = XposedHelpers.callMethod(videoUrlModel, "getUrlList");
         List<String> videoUrlList = StringUtils.caseList(videoUrlObject, String.class);

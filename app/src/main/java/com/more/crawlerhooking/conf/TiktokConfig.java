@@ -15,6 +15,10 @@ public class TiktokConfig {
     public static String GetDeviceIdMethod = "getDeviceId";
     public static String TryWaitDeviceIdInit = "tryWaitDeviceIdInit";
 
+    public static String SsHttpCallClass = "com.bytedance.retrofit2.SsHttpCall";
+    public static String GetResponseMethod = "getResponseWithInterceptorChain";
+    public static String GetRequestMethod= "request";
+
 
     public static HashMap<String, String> SerialToRegion = new HashMap<String, String>() {{
         put("FA79K1A05028", "NG");
@@ -125,5 +129,6 @@ public class TiktokConfig {
     public static HashMap<String, String> AndroidIdToSerial = new HashMap<String, String>(){{
         put("7917984559f97f5c", "HT7BR1A03106");
         put("32d8352139596ff3", "HT7BV1A01078");
+        put("255b06963fa7427e", "FA7921A01744");
     }};
 }

@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -193,7 +196,8 @@ public class LogUtils {
             Log.d(tag, "╔═══════════════════════════════════════════════════════════════════════════════════════");
             if (!TextUtils.isEmpty(url))
                 Log.i(tag, "║ onResponseSuccess URL：" + url);
-            printJson(tag, name, json.toString());
+            String msg = new GsonBuilder().serializeNulls().create().toJson(json, json.getClass());
+            printJson(tag, name, msg);
             Log.d(tag, "╚═══════════════════════════════════════════════════════════════════════════════════════");
         }
     }

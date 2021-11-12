@@ -3,5 +3,7 @@
     <string-array name="module_scope" translatable="false">
         <item>android</item>
         <item>com.ss.android.ugc.trill</item>
+        <item>video.like</item>
+        <item>com.transsion.phoenix</item>
     </string-array>
 </resources>

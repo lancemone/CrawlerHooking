@@ -14,4 +14,6 @@ public class HookingConfig {
     public static String SimOperatorMethod = "getSimOperator";    // 获取运营商代码
     public static String NetworkCountryIsoMethod = "getSimCountryIso";
 
+    public static String Class_OkhttpCall = "okhttp3.Call";
+
 }

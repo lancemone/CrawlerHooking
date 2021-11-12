@@ -11,58 +11,72 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
+import com.more.crawlerhooking.conf.GeneralConfig;
+import com.more.crawlerhooking.conf.PhoenixOKHttpConfig;
 import com.more.crawlerhooking.hooking.common.PhoneInfo;
 import com.more.crawlerhooking.conf.TiktokConfig;
+import com.more.crawlerhooking.hooking.common.okhttp.OkHttpClientHook;
+import com.more.crawlerhooking.hooking.phoenix.PhoenixHook;
 import com.more.crawlerhooking.hooking.tiktok.FeedVideo;
+import com.more.crawlerhooking.hooking.tiktok.HookTiktokSsHttpCall;
+import com.more.crawlerhooking.utils.LogUtils;
 
 import java.io.File;
+import java.util.Objects;
 
 
 public class Main implements IXposedHookLoadPackage, IXposedHookZygoteInit {
-    private final String TAG = "CrawlerMain";
     private static XSharedPreferences prefs;
 
     @Override
     public void initZygote(StartupParam startupParam) throws Throwable {
-        if (prefs == null){
-            if (XposedBridge.getXposedVersion() < 93){
-                XposedBridge.log("getLegacyModulePrefs");
-                prefs = getLegacyModulePrefs();
-            }else {
-                XposedBridge.log("getModulePrefs");
-                prefs = getModulePrefs();
+        try {
+            if (prefs == null){
+                if (XposedBridge.getXposedVersion() < 93){
+                    XposedBridge.log("getLegacyModulePrefs");
+                    prefs = getLegacyModulePrefs();
+                }else {
+                    XposedBridge.log("getModulePrefs");
+                    prefs = getModulePrefs();
+                }
+                prefs.makeWorldReadable();
+                LogUtils.i("prefs files: " + prefs.getFile().getAbsolutePath());
             }
-            XposedBridge.log("prefs is makeWorldReadable: " + prefs.makeWorldReadable());
-            XposedBridge.log("prefs files: " + prefs.getFile().getAbsolutePath());
+        }catch (NullPointerException nullPointerException){
+            prefs = loadPrefs();
         }
     }
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         if (prefs == null){
-            Log.i(TAG, "prefs is null");
+            LogUtils.i("prefs is null");
             return;
         }else {
             prefs.reload();
         }
         try {
-            Log.i(TAG, "handleLoadPackage package: " + lpparam.packageName);
+            LogUtils.i("handleLoadPackage package: " + lpparam.packageName);
             if (lpparam.packageName.equals(TiktokConfig.TikTokPn)) {
                 String serial = prefs.getString(Common.SerialNoKey, null);
                 String taskTurn = prefs.getString(Common.TaskTurnKey, null);
-                Log.i(TAG, "serial: " + serial);
+                LogUtils.i("serial: " + serial);
                 new PhoneInfo(lpparam, serial);
-                Log.i(TAG, "hooking Tiktok");
-                new FeedVideo(lpparam, serial, taskTurn);
+                LogUtils.i("hooking Tiktok");
+//                new FeedVideo(lpparam, serial, taskTurn);
+                new HookTiktokSsHttpCall(lpparam, serial, taskTurn);
+            }
+            if (lpparam.packageName.equals(GeneralConfig.PN_Phoenix_Browser)){
+//                new OkHttpClientHook(lpparam, new PhoenixOKHttpConfig());
+                new PhoenixHook(lpparam);
             }
         }catch (XposedHelpers.InvocationTargetError error) {
-            Log.w(TAG, error.toString());
+            LogUtils.w(error.toString());
         }
     }
 
     public static XSharedPreferences getModulePrefs() {
         XSharedPreferences pref = new XSharedPreferences(BuildConfig.APPLICATION_ID);
-        XposedBridge.log("getModulePrefs pref file path: " + pref.getFile().getAbsolutePath());
         XposedBridge.log("pref file canRead: " + pref.getFile().canRead());
         return pref.getFile().canRead() ? pref : null;
     }
@@ -74,5 +88,11 @@ public class Main implements IXposedHookLoadPackage, IXposedHookZygoteInit {
         }
         File f = new File(Environment.getDataDirectory(), dataDir + BuildConfig.APPLICATION_ID + "/shared_prefs/" + BuildConfig.APPLICATION_ID + "_preferences.xml");
         return new XSharedPreferences(f);
+    }
+
+    private XSharedPreferences loadPrefs(){
+        XSharedPreferences sPrefs = new XSharedPreferences(Objects.requireNonNull(Main.class.getPackage()).getName());
+        sPrefs.makeWorldReadable();
+        return sPrefs;
     }
 }

@@ -1,6 +1,12 @@
 package com.more.crawlerhooking.utils;
 
+import android.os.Build;
+import android.util.Xml;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 public class StringUtils {
@@ -25,5 +31,35 @@ public class StringUtils {
             return result;
         }
         return null;
+    }
+
+    public static String byte2Base64String(byte[] b){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return Base64.getEncoder().encodeToString(b);
+        }else {
+            return "";
+        }
+    }
+
+    public static String byte2String(byte[] data, long length){
+        int index = (int) length;
+        for (int i = 0; i < data.length; i++) {
+            if (data[i] == 0) {
+                index = i;
+                break;
+            }
+        }
+        byte[] temp = new byte[index];
+        Arrays.fill(temp, (byte) 0);
+        System.arraycopy(data, 0, temp, 0, index);
+        String str;
+        try {
+            str = new String(temp, "GBK");
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return "";
+        }
+        return str;
     }
 }
