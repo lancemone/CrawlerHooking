@@ -13,7 +13,7 @@ public class RegexUtils {
             ".*log.*", "dns.google.com.*"));
 
     public static ArrayList<String> MATCH_HOST = new ArrayList<>(Arrays.asList(
-            ".*aweme/v2/feed.*","api.tiktokv.com.*"
+            ".*aweme/v2/feed.*","api.tiktokv.com.*",".*aweme/v2/category/list.*"
     ));
 
     public static boolean urlMatchFiler(String url){
@@ -23,17 +23,22 @@ public class RegexUtils {
                 return true;
             }
         }
-//        for (String reg : NO_MATCH_HOST){
-//            if (Pattern.matches(reg, uri)){
-//                return false;
-//            }
-//        }
         return false;
+    }
+
+    public static boolean urlUnMatchFiler(String url){
+        String uri = getUriFromUrl(url);
+        for (String reg1 : NO_MATCH_HOST){
+            if (Pattern.matches(reg1, uri)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public static String getUriFromUrl(String url){
         String uri = "";
-        final String reg = "http(s?)://([^?]+).*[^.webp|.jpeg|.jpg|.mp4]$";
+        final String reg = "http(s?)://([^?]+).*[^.webp|.jpeg|.jpg|.mp4|.png]$";
         final Pattern pattern = Pattern.compile(reg);
         final Matcher matcher = pattern.matcher(url);
         while (matcher.find()){

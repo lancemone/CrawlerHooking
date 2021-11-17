@@ -44,7 +44,7 @@ public class HookTiktokSsHttpCall {
                             return;
                         }
                         String requestUlr = (String) XposedHelpers.getObjectField(rawResponse, "a");
-                        if (! RegexUtils.urlMatchFiler(requestUlr)){
+                        if (! RegexUtils.urlUnMatchFiler(requestUlr)){
                             return;
                         }
                         StringBuilder builder = new StringBuilder();
@@ -80,7 +80,7 @@ public class HookTiktokSsHttpCall {
                             if (bytesField != null){
                                 byte[] bytes = (byte[]) XposedHelpers.callMethod(rawTypedInput, "getBytes");
                                 builder.append("rawResponse TypedInput bytes to String:").append("\n");
-                                builder.append(new String(bytes, StandardCharsets.UTF_8)).append("\n");
+                                builder.append(new String(bytes, StandardCharsets.UTF_8).substring(0, 200)).append("\n");
                             }
                             String fakeFileName = (String) XposedHelpers.callMethod(rawTypedInput, "fileName");
                             builder.append("rawResponse TypedInput fakeFileName:").append(mimeType).append("\n");

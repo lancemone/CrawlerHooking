@@ -67,8 +67,8 @@ public class Main implements IXposedHookLoadPackage, IXposedHookZygoteInit {
                 new HookTiktokSsHttpCall(lpparam, serial, taskTurn);
             }
             if (lpparam.packageName.equals(GeneralConfig.PN_Phoenix_Browser)){
-//                new OkHttpClientHook(lpparam, new PhoenixOKHttpConfig());
-                new PhoenixHook(lpparam);
+                String serial = prefs.getString(Common.SerialNoKey, null);
+                new PhoenixHook(lpparam, prefs);
             }
         }catch (XposedHelpers.InvocationTargetError error) {
             LogUtils.w(error.toString());

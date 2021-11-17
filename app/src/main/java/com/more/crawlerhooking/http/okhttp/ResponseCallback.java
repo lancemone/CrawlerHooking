@@ -1,5 +1,7 @@
 package com.more.crawlerhooking.http.okhttp;
 
+import okhttp3.Response;
+
 public interface ResponseCallback {
 
     //请求成功回调事件处理

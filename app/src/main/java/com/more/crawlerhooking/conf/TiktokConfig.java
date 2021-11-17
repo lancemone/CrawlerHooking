@@ -22,7 +22,6 @@ public class TiktokConfig {
 
     public static HashMap<String, String> SerialToRegion = new HashMap<String, String>() {{
         put("FA79K1A05028", "NG");
-        put("FA7921A01744", "NG");
         put("FA79M1A00288", "NG");
         put("FA79D1A05885", "NG");
         put("HT7BN1A02199", "NG");
@@ -54,9 +53,10 @@ public class TiktokConfig {
         put("HT85N1A00536", "LR");
         put("FA7B11A05127", "RW");
         put("HT79V1A00338", "GA");
-        // test devices
         put("HT7BV1A01078", "TZ");
         put("HT85R1A00680", "ML");
+        // test devices
+        put("FA7921A01744", "ML");
     }};
 
     public static HashMap<String, String> RegionToCarrierCode = new HashMap<String, String>(){{

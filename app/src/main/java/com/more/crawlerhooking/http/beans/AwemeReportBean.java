@@ -1,15 +1,14 @@
-package com.more.crawlerhooking.http.beans.tiktok;
+package com.more.crawlerhooking.http.beans;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class AwemeReportBean {
-    /**
-     * source
-     */
-    @SerializedName("source")
-    private String source;
+/**
+ * tiktok aweme信息上报实体类
+ */
+public class AwemeReportBean extends BaseReportBean{
+
     /**
      * reportData
      */
@@ -21,21 +20,14 @@ public class AwemeReportBean {
     @SerializedName("hash_code")
     private Integer hashCode;
 
-    public AwemeReportBean(){}
+    public AwemeReportBean(){
+        this.source = "tt";
+    }
 
     public AwemeReportBean(ReportDataBean reportData, Integer hashCode){
         this.source = "tt";
         this.reportData = reportData;
         this.hashCode = hashCode;
-    }
-
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
     }
 
     public ReportDataBean getReportData() {

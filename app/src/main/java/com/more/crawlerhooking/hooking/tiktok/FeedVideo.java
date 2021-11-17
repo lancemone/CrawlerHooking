@@ -1,14 +1,12 @@
 package com.more.crawlerhooking.hooking.tiktok;
 
-import static com.more.crawlerhooking.http.beans.tiktok.AwemeReportBean.ReportDataBean;
-
-import android.util.Log;
+import static com.more.crawlerhooking.http.beans.AwemeReportBean.ReportDataBean;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.more.crawlerhooking.conf.TiktokConfig;
 import com.more.crawlerhooking.http.HttpRequest;
-import com.more.crawlerhooking.http.beans.tiktok.AwemeReportBean;
+import com.more.crawlerhooking.http.beans.AwemeReportBean;
 import com.more.crawlerhooking.utils.LogUtils;
 import com.more.crawlerhooking.utils.StringUtils;
 

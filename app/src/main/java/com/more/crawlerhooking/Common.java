@@ -8,6 +8,8 @@ public class Common {
 
     public static final String TaskTurnKey = "taskTurn";
 
+    public static final String PhoenixCountryKey = "phoenixCountry";
+
 //    public static final String CrawlerReportHost = "http://crawler.more.buzz:8688/";
     public static final String CrawlerReportHost = "http://10.234.72.21:8688/";
 

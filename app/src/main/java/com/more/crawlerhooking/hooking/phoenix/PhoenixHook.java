@@ -1,11 +1,16 @@
 package com.more.crawlerhooking.hooking.phoenix;
 
+import com.more.crawlerhooking.Common;
+import com.more.crawlerhooking.http.HttpRequest;
+import com.more.crawlerhooking.http.beans.PhoenixReportBean;
 import com.more.crawlerhooking.utils.LogUtils;
 import com.more.crawlerhooking.utils.StringUtils;
+import com.more.crawlerhooking.utils.UrlUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,15 +19,72 @@ import java.util.Map;
 import java.util.Set;
 
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class PhoenixHook {
 
-    public PhoenixHook(XC_LoadPackage.LoadPackageParam loadPackageParam){
-        hookVideoReturn(loadPackageParam);
+    private final String device;
+    private final String country;
+    private final String taskTurn;
+    private String lastTitle = "";
+
+    public PhoenixHook(XC_LoadPackage.LoadPackageParam loadPackageParam, XSharedPreferences prefs){
+        this.device = prefs.getString(Common.SerialNoKey, "");
+        this.country = prefs.getString(Common.PhoenixCountryKey, "");
+        this.taskTurn = prefs.getString(Common.TaskTurnKey, "");
+        hookQbUrl(loadPackageParam);
+//        hookVideoReturn(loadPackageParam);
 //        hookFeedsDataManager(loadPackageParam);
 //        hookC70m(loadPackageParam);
+    }
+
+
+    private void hookQbUrl(XC_LoadPackage.LoadPackageParam loadPackageParam){
+        Class<?> classSvG =  XposedHelpers.findClassIfExists("sv.c", loadPackageParam.classLoader);
+        if (classSvG != null){
+            XposedHelpers.findAndHookMethod(classSvG, "g", new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    super.afterHookedMethod(param);
+                    Object result = param.getResult();
+                    if (result != null){
+                        String qbUrl = result.toString();
+                        qbUrl = URLDecoder.decode(qbUrl, "utf-8");
+//                        LogUtils.i("decode qbUrl: " + qbUrl);
+                        Map<String, String> params = UrlUtils.getUrlAllParams(qbUrl);
+//                        LogUtils.i("params: " + params.toString());
+                        String title = params.get("title");
+                        String publisher = params.get("publisher");
+                        if (lastTitle.equals(title+publisher)){
+                            return;
+                        }
+                        lastTitle = title + publisher;
+                        PhoenixReportBean.ReportDataBean reportData = new PhoenixReportBean.ReportDataBean();
+                        reportData.setDeviceId(device);
+                        reportData.setDeviceCountry(country);
+                        reportData.setTaskTurn(taskTurn);
+                        reportData.setVid(params.get("vid"));
+                        reportData.setTitle(title);
+                        reportData.setPlayUrl(params.get("playUrl"));
+                        reportData.setOptPlayUrl(params.get("optPlayUrl"));
+                        reportData.setPicUrl(params.get("picUrl"));
+                        reportData.setPublisher(publisher);
+                        reportData.setFrom(params.get("from"));
+                        reportData.setTag(params.get("tag"));
+                        reportData.setCommentCount(Integer.parseInt(params.get("commentCount")));
+                        reportData.setDownloadCount(Integer.parseInt(params.get("downloadCount")));
+                        reportData.setShareCount(Integer.parseInt(params.get("shareCount")));
+                        reportData.setLikeCount(Integer.parseInt(params.get("praiseCount")));
+                        reportData.setViewCount(Integer.parseInt(params.get("view")));
+                        PhoenixReportBean phoenixReport = new PhoenixReportBean(reportData);
+                        LogUtils.i("start CrawlerReportRecord");
+                        HttpRequest.CrawlerReportRecord(phoenixReport);
+                    }
+                }
+            });
+        }
     }
 
     private void hookVideoReturn(XC_LoadPackage.LoadPackageParam loadPackageParam){

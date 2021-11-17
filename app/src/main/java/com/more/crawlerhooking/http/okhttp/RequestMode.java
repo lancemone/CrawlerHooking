@@ -34,7 +34,7 @@ public class RequestMode {
     }
 
     public static void postRequestWithJson(String url, Object obj, Map<String, String> headers, ResponseCallback responseCallback, Class<?> result){
-        String json = new GsonBuilder().serializeNulls().create().toJson(obj);
+        String json = new GsonBuilder().create().toJson(obj);
         postRequestWithJson(url, json, headers, responseCallback, result);
     }
 
