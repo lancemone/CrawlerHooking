@@ -1,0 +1,15 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message HotListStructV2{
+  string title = 1;
+  string image_url = 2;
+  string schema = 3;
+  int32 type = 4;
+  string i18n_title = 5;
+  string header = 6;
+  string footer = 7;
+  int32 pattern_type = 8;
+}

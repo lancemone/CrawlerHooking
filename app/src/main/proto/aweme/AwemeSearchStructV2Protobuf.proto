@@ -1,0 +1,17 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message AwemeSearchStructV2{
+  string sentence = 1;
+  string challenge_id = 2;
+  string search_word = 3;
+  int64 value = 4;
+  int32 vb_rank = 5;
+  int64 vb_rank_value = 6;
+  int32 rank = 7;
+  string group_id = 8;
+  int32 label = 9;
+  int32 pattern_type = 10;
+}

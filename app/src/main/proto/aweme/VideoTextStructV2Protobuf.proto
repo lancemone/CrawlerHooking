@@ -1,0 +1,11 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message VideoTextStructV2{
+  string text = 1;
+  string color = 2;
+  string color_text = 3;
+  int32 type = 4;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message AnnouncementStructV2{
+  string title = 1;
+  string body = 2;
+}

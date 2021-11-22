@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.protobuf'
 }
 
 android {
@@ -31,6 +32,13 @@ android {
             assets {
                 srcDirs 'src\\main\\assets'
             }
+            java {
+                srcDir 'src\\main\\java'
+            }
+            proto {
+                srcDir 'src\\main\\proto'
+                include '**/*.proto'
+            }
         }
     }
 
@@ -41,6 +49,27 @@ android {
         viewBinding true
     }
 }
+
+//protobuf {
+//    protoc {
+//        artifact = 'com.google.protobuf:protoc:3.19.1'
+//    }
+//    generateProtoTasks {
+//        all().each { task ->
+//            task.builtins {
+//                remove java
+//            }
+//            task.builtins {
+//                java {}
+//            }
+//        }
+//    }
+//    generatedFilesBaseDir = "$projectDir/generated"
+//}
+
+//clean {
+//    delete protobuf.generatedFilesBaseDir
+//}
 
 dependencies {
 
@@ -60,4 +89,5 @@ dependencies {
     implementation 'com.orhanobut:logger:2.2.0'
     implementation 'com.google.code.gson:gson:2.8.8'
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+    implementation 'com.google.protobuf:protobuf-java:3.19.1'
 }

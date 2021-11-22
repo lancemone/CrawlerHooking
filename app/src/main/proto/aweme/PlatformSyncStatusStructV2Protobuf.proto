@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message PlatformSyncStatusStructV2{
+  string platform_name = 1;
+  string nickname = 2;
+  bool full_synced = 3;
+}

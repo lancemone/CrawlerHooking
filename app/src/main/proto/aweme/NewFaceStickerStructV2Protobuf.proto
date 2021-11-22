@@ -1,0 +1,30 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+import "aweme/ShareStructV2Protobuf.proto";
+import "aweme/CommerceStickerStructV2Protobuf.proto";
+
+message NewFaceStickerStructV2{
+  string id = 1;
+  string name = 2;
+  repeated string children = 3;
+  UrlStructV2 icon_url = 4;
+  string owner_id = 5;
+  string owner_nickname = 6;
+  int32 user_count = 7;
+  string desc = 8;
+  string effect_id = 9;
+  ShareStructV2 share_info = 10;
+  bool is_favorite = 11;
+  CommerceStickerStructV2 commerce_sticker = 12;
+  repeated string tags = 13;
+  UrlStructV2 avatar_thumb = 14;
+  UrlStructV2 avatar_medium = 15;
+  UrlStructV2 avatar_large = 16;
+  int64 vv_count = 17;
+  string extra = 18;
+  string sec_uid = 19;
+}

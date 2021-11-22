@@ -1,0 +1,11 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message FansStructV2{
+  string fans_name = 1;
+  int32 fans_level = 2;
+  bool is_fan = 3;
+  bool light_up = 4;
+}

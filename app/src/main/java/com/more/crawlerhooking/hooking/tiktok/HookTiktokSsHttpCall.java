@@ -1,6 +1,10 @@
 package com.more.crawlerhooking.hooking.tiktok;
 
+import android.util.Log;
+
 import com.more.crawlerhooking.conf.TiktokConfig;
+import com.more.crawlerhooking.http.HttpRequest;
+import com.more.crawlerhooking.protobuf.aweme.AwemeV2FeedResponseProtobuf;
 import com.more.crawlerhooking.utils.LogUtils;
 import com.more.crawlerhooking.utils.RegexUtils;
 
@@ -44,7 +48,7 @@ public class HookTiktokSsHttpCall {
                             return;
                         }
                         String requestUlr = (String) XposedHelpers.getObjectField(rawResponse, "a");
-                        if (! RegexUtils.urlUnMatchFiler(requestUlr)){
+                        if (! RegexUtils.urlMatchFiler(requestUlr)){
                             return;
                         }
                         StringBuilder builder = new StringBuilder();
@@ -65,25 +69,23 @@ public class HookTiktokSsHttpCall {
                         if (rawTypedInput != null){
                             String mimeType = (String) XposedHelpers.callMethod(rawTypedInput, "mimeType");
                             builder.append("rawResponse TypedInput mimeType:").append(mimeType).append("\n");
-//                            InputStream inputStream = (InputStream) XposedHelpers.callMethod(rawTypedInput, "in");
-//                            if (inputStream != null){
-//                                StringBuilder sb = new StringBuilder();
-//                                String line;
-//                                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-//                                while ((line = reader.readLine()) != null){
-//                                    sb.append(line);
-//                                }
-//                                builder.append("rawResponse TypedInput InputStream to String:").append("\n");
-//                                builder.append(sb.toString()).append("\n");
-//                            }
-                            Field bytesField = XposedHelpers.findFieldIfExists(rawTypedInput.getClass(), "bytes");
-                            if (bytesField != null){
-                                byte[] bytes = (byte[]) XposedHelpers.callMethod(rawTypedInput, "getBytes");
-                                builder.append("rawResponse TypedInput bytes to String:").append("\n");
-                                builder.append(new String(bytes, StandardCharsets.UTF_8).substring(0, 200)).append("\n");
+                            if (mimeType.equals("application/x-protobuf; charset=utf-8")){
+                                Field bytesField = XposedHelpers.findFieldIfExists(rawTypedInput.getClass(), "bytes");
+                                if (bytesField != null){
+                                    byte[] bytes = (byte[]) XposedHelpers.callMethod(rawTypedInput, "getBytes");
+//                                    AwemeV2FeedResponseProtobuf.AwemeV2FeedResponse awemeV2FeedResponse = AwemeV2FeedResponseProtobuf.AwemeV2FeedResponse.parseFrom(bytes);
+//                                    if (awemeV2FeedResponse.getAwemeListCount() > 0){
+//                                        LogUtils.i("first aweme: " + awemeV2FeedResponse.getAwemeList(0).toString());
+//                                    }else {
+//                                        LogUtils.i("awemeV2FeedResponse AwemeListCount is 0");
+//                                        LogUtils.i("awemeV2FeedResponse getStatusCode" + awemeV2FeedResponse.getStatusCode());
+//                                    }
+                                    LogUtils.i("start AwemeFeedResponseProtobufReport");
+                                    HttpRequest.AwemeFeedResponseProtobufReport(bytes);
+                                }
                             }
                             String fakeFileName = (String) XposedHelpers.callMethod(rawTypedInput, "fileName");
-                            builder.append("rawResponse TypedInput fakeFileName:").append(mimeType).append("\n");
+                            builder.append("rawResponse TypedInput fakeFileName:").append(fakeFileName).append("\n");
                         }
                         builder.append("rawResponse Object f:").append(XposedHelpers.getObjectField(rawResponse, "f")).append("\n");
                         Object body = XposedHelpers.getObjectField(response, "c");

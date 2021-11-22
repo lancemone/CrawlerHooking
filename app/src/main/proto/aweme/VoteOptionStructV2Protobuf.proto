@@ -1,0 +1,11 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message VoteOptionStructV2{
+  string option_text = 1;
+  int64 option_id = 2;
+  int64 vote_count = 3;
+  string option = 4;
+}

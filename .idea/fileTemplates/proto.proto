@@ -1,0 +1,4 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+option java_outer_classname = "UrlStructV2";

@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 
 import java.util.Map;
 
+import okhttp3.RequestBody;
+
 public class RequestMode {
 
     /**
@@ -30,6 +32,12 @@ public class RequestMode {
     public static void postRequest(String url, RequestParams params, Map<String, String> headers,
                                    ResponseCallback callback, Class<?> clazz) {
         HttpClientHelper.post(CommonRequestHelper.createPostRequest(url, params, headers),
+                new ResposeDataHandle(callback, clazz));
+    }
+
+    public static void postRequest(String url, RequestBody body, Map<String, String> headers,
+                                   ResponseCallback callback, Class<?> clazz) {
+        HttpClientHelper.post(CommonRequestHelper.createPostRequest(url, body, headers),
                 new ResposeDataHandle(callback, clazz));
     }
 

@@ -1,0 +1,20 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+import "aweme/ActivityTimeRangeV2Protobuf.proto";
+
+message CommerceActivityStructV2{
+  int32 act_type = 1;
+  UrlStructV2 image = 2;
+  string jump_web_url = 3;
+  string jump_open_url = 4;
+  string title = 5;
+  int64 start_time = 6;
+  int64 end_time = 7;
+  ActivityTimeRangeV2 time_range =  8;
+  UrlStructV2 track_url_list = 9;
+  UrlStructV2 click_track_url_list = 10;
+}

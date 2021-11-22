@@ -1,0 +1,15 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message ACLCommonStructV2{
+  int32 code = 1;
+  int32 show_type = 2;
+  string toast_msg = 3;
+  string extra = 4;
+  int32 transcode = 5;
+  bool mute = 6;
+  string popup_msg = 7;
+  string platform_id = 8;
+}

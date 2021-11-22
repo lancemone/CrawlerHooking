@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message TextContentStructV2{
+  string text = 1;
+  string color = 2;
+  string size = 3;
+}

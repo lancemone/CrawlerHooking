@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message ProfileBadgeStructV2{
+  int64 id = 1;
+  string name = 2;
+  string description = 3;
+  string url = 4;
+  bool should_show = 6;
+}

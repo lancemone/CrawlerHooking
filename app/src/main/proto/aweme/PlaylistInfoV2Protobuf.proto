@@ -1,0 +1,14 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message PlaylistInfoV2{
+  string mix_id = 1;
+  string name = 2;
+  int32 index = 3;
+  UrlStructV2 icon = 4;
+  int64 item_total = 5;
+}

@@ -59,6 +59,19 @@ public class CommonRequestHelper {
                 .build();
     }
 
+    public static Request createPostRequest(String url, RequestBody body, Map<String, String> headers){
+        Headers.Builder mHeadersBuilder = new Headers.Builder();
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
+            mHeadersBuilder.add(entry.getKey(), entry.getValue());
+        }
+        Headers mHeaders = mHeadersBuilder.build();
+        return new Request.Builder()
+                .url(url)
+                .headers(mHeaders)
+                .post(body)
+                .build();
+    }
+
     public static Request createPostRequestWithJson(String url, String jsonBody, Map<String, String> headers){
         Headers.Builder mHeadersBuilder = new Headers.Builder();
         if (headers.isEmpty())

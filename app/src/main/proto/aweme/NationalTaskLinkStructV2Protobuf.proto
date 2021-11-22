@@ -1,0 +1,15 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message NationalTaskLinkStructV2{
+  string id = 1;
+  string title = 2;
+  string sub_title = 3;
+  UrlStructV2 avatar_icon = 4;
+  string web_url = 5;
+  string open_url = 6;
+}

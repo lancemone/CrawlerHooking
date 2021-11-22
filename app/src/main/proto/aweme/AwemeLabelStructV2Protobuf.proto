@@ -1,0 +1,11 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message AwemeLabelStructV2{
+  UrlStructV2 label_url = 1;
+  int32 label_type = 2;
+}

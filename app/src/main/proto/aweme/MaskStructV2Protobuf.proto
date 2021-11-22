@@ -1,0 +1,13 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message MaskStructV2{
+  bool show_mask = 1;
+  int32 mask_type = 2;
+  int32 status = 3;
+  string title = 4;
+  string content = 5;
+  string cancel_mask_label = 6;
+}

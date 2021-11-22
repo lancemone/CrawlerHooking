@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message MatchedPGCSoundStructV2{
+  int64 id = 1;
+  string author = 2;
+  string title = 3;
+  string mixed_title = 4;
+  string mixed_author = 5;
+}

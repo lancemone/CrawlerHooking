@@ -1,0 +1,18 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/AnchorWikipediaStructV2Protobuf.proto";
+import "aweme/AnchorShopLinkStructV2Protobuf.proto";
+import "aweme/AnchorCommonStructV2Protobuf.proto";
+
+
+message AnchorStructV2{
+  int32 show_type = 1;
+  int32 business_type = 2;
+  AnchorWikipediaStructV2 wikipedia_info = 3;
+  AnchorShopLinkStructV2 shop_link = 4;
+  AnchorCommonStructV2 anchor_info = 5;
+  string anchor_idg = 6;
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message TextExtraStructV2{
+  int32 start = 1;
+  int32 end = 2;
+  string user_id = 3;
+  int32 type = 4;
+  string hashTagNameFirst = 5;
+  string hashtag_id = 6;
+  bool is_commerce = 7;
+  string hashtag_name = 8;
+  string sec_uid = 9;
+  string aweme_id = 10;
+  int32 sub_type = 11;
+}

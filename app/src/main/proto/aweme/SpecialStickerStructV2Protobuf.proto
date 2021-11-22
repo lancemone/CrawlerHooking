@@ -1,0 +1,15 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message SpecialStickerStructV2{
+  int32 sticker_type = 1;
+  string link = 2;
+  string title = 3;
+  string sticker_id = 4;
+  UrlStructV2 icon_url = 5;
+  string open_url = 6;
+}

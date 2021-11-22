@@ -1,0 +1,13 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message RecommendItemStructV2{
+  string aweme_id = 1;
+  UrlStructV2 cover = 2;
+  UrlStructV2 dynamic_cover = 3;
+  int64 media_type = 4;
+}

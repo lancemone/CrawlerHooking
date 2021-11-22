@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message CommerceStickerUnlockStructV2{
+  string desc = 1;
+  string web_url = 2;
+  string open_url = 3;
+}

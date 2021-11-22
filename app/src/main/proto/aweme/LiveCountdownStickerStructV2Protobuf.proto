@@ -1,0 +1,14 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message LiveCountdownStickerStructV2{
+  string title = 1;
+  int64 end_time = 2;
+  int64 subscribe_count = 3;
+  bool is_subscribed = 4;
+  string text_to_be_subscribed = 5;
+  string text_already_subscribed = 6;
+  string text_already_ended = 7;
+}

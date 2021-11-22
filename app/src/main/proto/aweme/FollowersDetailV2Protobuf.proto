@@ -1,0 +1,15 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message FollowersDetailV2{
+  string  name = 1;
+  string  icon = 2;
+  int32  fans_count = 3;
+  string  open_url = 4;
+  string  apple_id = 5;
+  string  download_url = 6;
+  string  package_name = 7;
+  string  app_name = 8;
+}

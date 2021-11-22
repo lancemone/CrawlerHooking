@@ -1,0 +1,13 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/QuickShopSecondFloorV2Protobuf.proto";
+
+message QuickShopStructV2{
+  string quick_shop_url = 1;
+  string  quick_shop_name = 2;
+  bool with_text_entry = 3;
+  QuickShopSecondFloorV2 second_floor_info = 4;
+}

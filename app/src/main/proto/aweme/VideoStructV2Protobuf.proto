@@ -1,0 +1,41 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+import "aweme/BitRateStructV2Protobuf.proto";
+import "aweme/PlayTokenAuthStructV2Protobuf.proto";
+import "aweme/BigThumbV2Protobuf.proto";
+
+message VideoStructV2{
+  UrlStructV2 play_addr = 1;
+  UrlStructV2 cover = 2;
+  int32 height = 3;
+  int32 width = 4;
+  UrlStructV2 dynamic_cover = 5;
+  UrlStructV2 origin_cover = 6;
+  string ratio = 7;
+  UrlStructV2 download_addr = 8;
+  bool has_watermark = 9;
+  UrlStructV2 play_addr_lowbr = 10;
+  repeated BitRateStructV2 bit_rate = 11;
+  UrlStructV2 new_download_addr = 12;
+  int32 duration = 13;
+  UrlStructV2 download_suffix_logo_addr = 14;
+  bool has_download_suffix_logo_addr = 15;
+  UrlStructV2 play_addr_265 = 16;
+  UrlStructV2 play_addr_h264 = 18;
+  UrlStructV2 ui_alike_download_addr = 19;
+  UrlStructV2 caption_download_addr = 20;
+  int64 cdn_url_expired = 21;
+  int32 is_long_video = 22;
+  string video_model = 23;
+  bool need_set_token = 24;
+  string misc_download_addrs = 25;
+  PlayTokenAuthStructV2 token_auth = 26;
+  UrlStructV2 play_addr_bytevc1 = 27;
+  int32 is_bytevc1 = 28;
+  repeated BigThumbV2 big_thumbs = 29;
+  string meta = 30;
+}

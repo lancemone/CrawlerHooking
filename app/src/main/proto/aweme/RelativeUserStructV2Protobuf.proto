@@ -1,0 +1,17 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message RelativeUserStructV2{
+  int64 uid = 1;
+  UrlStructV2 avatar = 2;
+  string nickname = 3;
+  string remark_name = 4;
+  UrlStructV2 avatar_larger = 5;
+  UrlStructV2 avatar_thumb = 6;
+  int32 follow_status = 7;
+  string sec_uid = 8;
+}

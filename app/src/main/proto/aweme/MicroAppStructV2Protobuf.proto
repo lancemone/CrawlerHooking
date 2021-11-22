@@ -1,0 +1,21 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/MicroAppCardStructV2Protobuf.proto";
+
+message MicroAppStructV2{
+  string app_id = 1;
+  string app_name = 2;
+  string icon = 3;
+  int32 orientation = 4;
+  string schema = 5;
+  int32 state = 6;
+  string summary = 7;
+  int32 type = 8;
+  string description = 9;
+  string title = 10;
+  MicroAppCardStructV2 card = 11;
+  string web_url = 12;
+}

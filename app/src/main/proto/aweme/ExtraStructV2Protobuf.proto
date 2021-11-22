@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message ExtraStructV2{
+    int64 now = 1;
+    string logid = 2;
+    repeated string fatal_item_ids = 3;
+}

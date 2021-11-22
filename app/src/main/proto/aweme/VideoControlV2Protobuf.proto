@@ -1,0 +1,18 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message VideoControlV2{
+  bool allow_download = 1;
+  int32 share_type = 2;
+  int32 show_progress_bar = 3;
+  int32 draft_progress_bar = 4;
+  bool allow_duet = 5;
+  bool allow_react = 6;
+  int32 prevent_download_type = 7;
+  bool allow_dynamic_wallpaper = 8;
+  int32 timer_status = 9;
+  bool allow_music = 10;
+  bool allow_stitch = 11;
+}

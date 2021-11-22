@@ -1,0 +1,14 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message HybridLabelStructV2{
+  string background_color = 1;
+  string text = 2;
+  string text_color = 3;
+  UrlStructV2 image = 4;
+  string ref_url = 5;
+}

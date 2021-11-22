@@ -1,0 +1,15 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/ItemLikeEggDataV2Protobuf.proto";
+import "aweme/StickerPendantStructV2Protobuf.proto";
+
+message CommerceConfigDataV2{
+  int32 type = 1;
+  int32 priority = 2;
+  ItemLikeEggDataV2 item_like_egg = 3;
+  StickerPendantStructV2 sticker_pendant = 4;
+  string data = 5;
+}

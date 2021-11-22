@@ -1,0 +1,8 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message LogPbStructV2{
+    string impr_id = 1;
+}

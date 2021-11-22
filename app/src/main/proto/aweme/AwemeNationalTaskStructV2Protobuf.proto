@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/NationalTaskLinkStructV2Protobuf.proto";
+import "aweme/LiveAppointmentStructV2Protobuf.proto";
+
+message AwemeNationalTaskStructV2{
+  NationalTaskLinkStructV2 link_info = 1;
+  LiveAppointmentStructV2 live_appointment = 2;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message ExternalSongStructV2{
+  string h5_url = 1;
+  string partner_name = 2;
+  string partner_song_id = 3;
+  string external_song_key = 4;
+}

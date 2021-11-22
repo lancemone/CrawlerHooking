@@ -1,0 +1,15 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/LynxButtonStructV2Protobuf.proto";
+
+message LynxRawDataStructV2{
+  string refer = 1;
+  string web_title = 2;
+  int32 template_type = 3;
+  string open_url = 4;
+  LynxButtonStructV2 button_info = 5;
+  string web_url = 6;
+}

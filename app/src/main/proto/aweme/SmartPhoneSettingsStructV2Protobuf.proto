@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message SmartPhoneSettingsStructV2{
+  string phone_number = 1;
+  string phone_id = 2;
+  string encrypt_key = 3;
+}

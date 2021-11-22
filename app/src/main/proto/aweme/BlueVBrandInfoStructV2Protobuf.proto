@@ -1,0 +1,18 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message BlueVBrandInfoStructV2{
+  int32 category_id= 1;
+  string category_name= 2;
+  int32 brand_id= 3;
+  string brand_name= 4;
+  UrlStructV2 logo_url= 5;
+  int32 heat= 6;
+  int32 rank= 7;
+  int32 rank_diff= 8;
+  string tag_name= 9;
+}

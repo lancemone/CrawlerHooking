@@ -1,0 +1,13 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message StreamUrlStructV2{
+  int64 sid = 1;
+  string rtmp_pull_url = 2;
+  string rtmp_push_url = 3;
+  int32 provider = 4;
+  string extra = 5;
+  string id = 6;
+}

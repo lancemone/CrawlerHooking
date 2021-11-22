@@ -1,0 +1,11 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message RelationRecommendStructV2{
+  int64 recommend_type = 1;
+  string relation_text_key = 2;
+  string rec_type = 3;
+  string friend_type_str = 4;
+}

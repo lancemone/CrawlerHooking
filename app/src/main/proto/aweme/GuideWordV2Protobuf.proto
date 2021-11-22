@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message GuideWordV2{
+    string word = 1;
+    string search_word = 2;
+    int32 type = 3;
+    int32 breathe_times = 4;
+
+}

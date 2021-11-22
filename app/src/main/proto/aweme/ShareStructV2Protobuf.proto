@@ -1,0 +1,26 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message ShareStructV2{
+  string  share_url = 1;
+  string  share_weibo_desc = 2;
+  string  share_desc = 3;
+  string  share_title = 4;
+  UrlStructV2  share_qrcode_url = 5;
+  string  manage_goods_url = 6;
+  UrlStructV2  share_image_url = 7;
+  int32  bool_persist = 8;
+  string  goods_rec_url = 9;
+  string  share_title_myself = 10;
+  string  share_title_other = 11;
+  string  share_link_desc = 12;
+  string  share_signature_url = 13;
+  string  share_signature_desc = 14;
+  string  share_quote = 15;
+  string  whatsapp_desc = 16;
+  string  share_desc_info = 17;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message ActivityButtonStructV2{
+  string label = 1;
+  string color = 2;
+}

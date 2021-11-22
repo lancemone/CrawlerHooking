@@ -1,0 +1,14 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message AwemeRiskStructV2{
+  bool vote = 1;
+  bool warn = 2;
+  bool risk_sink = 3;
+  int32 type = 4;
+  string content = 5;
+  bool notice = 6;
+  string url = 7;
+}

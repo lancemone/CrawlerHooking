@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message CNYStructV2{
+  int64 start_time = 1;
+  int64 end_time = 2;
+  bool topview_valid = 3;
+  int32 feed_show_time = 4;
+  string live_info = 5;
+}

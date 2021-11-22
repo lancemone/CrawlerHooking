@@ -1,0 +1,9 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message AnchorShopLinkStructV2{
+  string keyword = 1;
+  string url = 2;
+}

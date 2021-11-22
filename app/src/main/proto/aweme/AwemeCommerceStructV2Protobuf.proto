@@ -1,0 +1,13 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message AwemeCommerceStructV2{
+  int32 ad_auth_status = 1;
+  int32 ad_source = 2;
+  bool avoid_global_pendant = 3;
+  bool with_comment_filter_words = 4;
+  int32 ad_style = 5;
+  bool prevent_share = 6;
+}

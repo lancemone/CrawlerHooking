@@ -1,0 +1,14 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UtteranceV2Protobuf.proto";
+import "aweme/AutoCaptionTypeV2Protobuf.proto";
+
+message AutoVideoCaptionStructV2{
+  int32 location = 1;
+  string audio_uri = 2;
+  repeated UtteranceV2 utterances = 3;
+  repeated AutoCaptionTypeV2 auto_captions = 4;
+}

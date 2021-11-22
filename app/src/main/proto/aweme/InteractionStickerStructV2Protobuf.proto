@@ -1,0 +1,19 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/VoteStructV2Protobuf.proto";
+import "aweme/LiveCountdownStickerStructV2Protobuf.proto";
+import "aweme/AutoVideoCaptionStructV2Protobuf.proto";
+
+message InteractionStickerStructV2{
+  int32 type = 1;
+  int32 index = 2;
+  string track_info = 4;
+  string attr = 5;
+  VoteStructV2 vote_info = 6;
+  string text_info = 7;
+  LiveCountdownStickerStructV2 countdown_info = 10;
+  AutoVideoCaptionStructV2 auto_video_caption_info = 11;
+}

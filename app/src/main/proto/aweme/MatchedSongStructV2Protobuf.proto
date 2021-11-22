@@ -1,0 +1,14 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message MatchedSongStructV2{
+  string id = 1;
+  string author = 2;
+  string title = 3;
+  string h5_url = 4;
+  UrlStructV2 cover_medium = 5;
+}

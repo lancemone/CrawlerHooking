@@ -1,0 +1,19 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+import "aweme/WebcastRoomStructV2Protobuf.proto";
+import "aweme/FansStructV2Protobuf.proto";
+
+message WebcastRoomFeedCellStructV2{
+  WebcastRoomStructV2 room = 1;
+  int32 type = 2;
+  FansStructV2 fans_struct = 3;
+  string tag = 4;
+  int64 tag_id = 5;
+  UrlStructV2 icon = 6;
+  string distance = 7;
+  string rawdata = 8;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message VideoReplyStructV2{
+  int64 aweme_id = 1;
+  int64 comment_id = 2;
+  int64 alias_comment_id = 3;
+}

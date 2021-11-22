@@ -1,0 +1,9 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message VideoMuteStructV2{
+  bool is_mute = 1;
+  string mute_desc = 2;
+}

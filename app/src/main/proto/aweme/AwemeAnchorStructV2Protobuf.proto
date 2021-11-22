@@ -1,0 +1,19 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message AwemeAnchorStructV2{
+  int32 type = 1;
+  string id = 2;
+  UrlStructV2 icon = 3;
+  string title = 4;
+  string open_url = 5;
+  string web_url = 6;
+  string mp_url = 7;
+  string title_tag = 8;
+  string extra = 99;
+  string log_extra = 100;
+}

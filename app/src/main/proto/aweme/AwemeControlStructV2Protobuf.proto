@@ -1,0 +1,11 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message AwemeControlStructV2{
+  bool can_forward = 1;
+  bool can_share = 2;
+  bool can_comment = 3;
+  bool can_show_comment = 4;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message AnchorWikipediaStructV2{
+  string keyword = 1;
+  string lang = 2;
+  string url = 3;
+}

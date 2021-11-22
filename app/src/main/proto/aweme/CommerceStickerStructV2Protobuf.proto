@@ -1,0 +1,30 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+import "aweme/CommerceStickerUnlockStructV2Protobuf.proto";
+
+message CommerceStickerStructV2{
+  string id = 1;
+  string ad_owner_id = 2;
+  string ad_owner_name = 3;
+  string detail_desc = 4;
+  string detail_letters = 5;
+  string detail_open_url = 6;
+  string detail_web_url = 7;
+  string detail_web_url_title = 8;
+  string screen_desc = 9;
+  bool screen_switch = 10;
+  UrlStructV2 publish_icon_url = 11;
+  string publish_letters = 12;
+  string publish_open_url = 13;
+  string publish_web_url = 14;
+  string publish_web_url_title = 15;
+  string music_id = 16;
+  string challenge_id = 17;
+  UrlStructV2 screen_icon = 18;
+  int64 expire_time = 19;
+  CommerceStickerUnlockStructV2 unlock_info = 20;
+}

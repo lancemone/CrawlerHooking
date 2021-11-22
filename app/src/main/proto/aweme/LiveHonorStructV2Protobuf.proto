@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message LiveHonorStructV2{
+  int32 honor_level = 1;
+  int64 honor_score = 2;
+  UrlStructV2 badge_thumb = 3;
+}

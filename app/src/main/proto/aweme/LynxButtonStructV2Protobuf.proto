@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message LynxButtonStructV2{
+  string button_background_color = 1;
+  string source = 2;
+  string title = 3;
+  string image_url = 4;
+  string live_group_id = 5;
+}

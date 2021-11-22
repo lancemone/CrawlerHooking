@@ -1,0 +1,13 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message VisualSearchEntryStructV2{
+  string title = 1;
+  string sub_title = 2;
+  string text_color = 3;
+  UrlStructV2 icon_url = 4;
+}

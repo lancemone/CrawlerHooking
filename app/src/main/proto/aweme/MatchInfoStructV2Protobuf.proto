@@ -1,0 +1,11 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message MatchInfoStructV2{
+  string query = 1;
+  string link = 2;
+  int32 begin = 3;
+  int32 end = 4;
+}

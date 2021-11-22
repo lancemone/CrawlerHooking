@@ -1,0 +1,16 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message BitRateStructV2{
+  string gear_name = 1;
+  int32 quality_type = 2;
+  int32 bit_rate = 3;
+  UrlStructV2 play_addr = 4;
+  UrlStructV2 play_addr_265 = 6;
+  int32 is_bytevc1 = 7;
+  UrlStructV2 play_addr_bytevc1 = 8;
+}

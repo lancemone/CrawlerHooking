@@ -1,0 +1,30 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/AwemeStructV2Protobuf.proto";
+import "aweme/ExtraStructV2Protobuf.proto";
+import "aweme/LogPbStructV2Protobuf.proto";
+import "aweme/GuideWordV2Protobuf.proto";
+
+message AwemeV2FeedResponse {
+    int32 status_code = 1;
+    int64 min_cursor = 2;
+    int64 max_cursor = 3;
+    int32 has_more = 4;
+    repeated AwemeStructV2 aweme_list = 5;
+    string rid = 6;
+    int32 home_model = 7;
+    int32 refresh_clear = 8;
+    ExtraStructV2 extra = 9;
+    LogPbStructV2 log_pb = 10;
+    string DebugInfo = 11;
+    GuideWordV2 guide_word = 12;
+    repeated AwemeStructV2 preload_ads = 13;
+    string status_msg = 14;
+    int32 block_code = 15;
+    repeated AwemeStructV2 preload_awemes = 16;
+    bool enable_re_rank = 17;
+    bool disable_adjust_for_cache = 18;
+}

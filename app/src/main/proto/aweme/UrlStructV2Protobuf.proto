@@ -1,0 +1,16 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message UrlStructV2{
+    string uri = 1;
+    repeated string url_list = 2;
+    int32 width = 3;
+    int32 height = 4;
+    string url_key = 5;
+    int64 data_size = 6;
+    string file_hash = 7;
+    string file_cs = 8;
+    string player_access_key = 9;
+}

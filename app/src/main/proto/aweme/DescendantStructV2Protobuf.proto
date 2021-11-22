@@ -1,0 +1,9 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message DescendantStructV2{
+  repeated string platforms = 1;
+  string notify_msg = 2;
+}

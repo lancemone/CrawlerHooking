@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message CloudGameEntranceStructV2{
+  string button_color = 1;
+  string button_title = 2;
+  string sticker_info_url = 3;
+  string sticker_title = 4;
+  int32 show_sticker_time = 5;
+}

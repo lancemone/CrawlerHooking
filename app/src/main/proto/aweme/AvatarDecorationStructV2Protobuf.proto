@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message AvatarDecorationStructV2{
+  int64 id = 1;
+  string name = 2;
+  UrlStructV2 source_url = 3;
+}

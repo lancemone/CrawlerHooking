@@ -1,0 +1,11 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/SimpleUserStructV2Protobuf.proto";
+
+message HotsearchSprintStructV2{
+  int32 sprint = 1;
+  repeated SimpleUserStructV2 followers = 2;
+}

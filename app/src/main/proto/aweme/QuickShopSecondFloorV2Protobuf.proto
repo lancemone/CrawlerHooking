@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message QuickShopSecondFloorV2{
+  string process_text = 1;
+  string enter_text = 2;
+  string trans_bg_text = 3;
+}

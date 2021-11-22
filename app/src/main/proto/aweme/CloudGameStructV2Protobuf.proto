@@ -1,0 +1,13 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/CloudGameEntranceStructV2Protobuf.proto";
+
+message CloudGameStructV2{
+  string cloud_game_id = 1;
+  CloudGameEntranceStructV2 entrance_info = 2;
+  string download_url = 3;
+  string extra = 4;
+}

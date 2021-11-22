@@ -1,0 +1,16 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message PreloadStructV2{
+  int32 comment = 1;
+  int32 profile = 2;
+  double comment_pro = 3;
+  double profile_pro = 4;
+  double comment_thres = 5;
+  double profile_thres = 6;
+  double comment_median_time = 7;
+  double profile_median_time = 8;
+  int32 model_v2 = 9;
+}

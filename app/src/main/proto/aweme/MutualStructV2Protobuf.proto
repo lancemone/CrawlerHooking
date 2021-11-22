@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/MutualUserStructV2Protobuf.proto";
+
+message MutualStructV2{
+  int32 mutual_type = 1;
+  repeated MutualUserStructV2 user_list = 2;
+  int32 total = 3;
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/ACLCommonStructV2Protobuf.proto";
+
+message AwemeACLStructV2{
+  ACLCommonStructV2 download_general = 1;
+  ACLCommonStructV2 download_mask_panel = 2;
+  ACLCommonStructV2 download_share_panel = 3;
+  int32 share_list_status = 4;
+  ACLCommonStructV2 share_general = 5;
+  repeated ACLCommonStructV2 platform_list = 6;
+  ACLCommonStructV2 share_third_platform = 7;
+}

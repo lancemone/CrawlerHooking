@@ -1,0 +1,14 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/VideoStructV2Protobuf.proto";
+import "aweme/VideoControlV2Protobuf.proto";
+
+message LongVideoStructV2{
+  VideoStructV2 video = 1;
+  int32 long_video_type = 2;
+  double trailer_start_time = 3;
+  VideoControlV2 video_control = 4;
+}

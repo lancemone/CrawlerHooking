@@ -1,0 +1,16 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/LynxRawDataStructV2Protobuf.proto";
+
+message LiveAppointmentStructV2{
+  string web_url = 1;
+  string type = 2;
+  LynxRawDataStructV2 lynx_raw_data = 3;
+  string template_url = 4;
+  int32 show_button_seconds = 5;
+  int32 position = 6;
+  int64 button_style = 7;
+}

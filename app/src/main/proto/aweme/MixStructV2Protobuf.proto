@@ -1,0 +1,23 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+import "aweme/ShareStructV2Protobuf.proto";
+import "aweme/UserStructV2Protobuf.proto";
+import "aweme/MixStatusStructV2Protobuf.proto";
+import "aweme/MixStatisStructV2Protobuf.proto";
+
+message MixStructV2{
+  string mix_id = 1;
+  string mix_name = 2;
+  UrlStructV2 cover_url = 3;
+  UrlStructV2 icon_url = 4;
+  MixStatusStructV2 status = 5;
+  MixStatisStructV2 statis = 6;
+  string desc = 7;
+  UserStructV2 author = 8;
+  string extra = 9;
+  ShareStructV2 share_info = 10;
+}

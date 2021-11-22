@@ -1,0 +1,22 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/VideoMuteStructV2Protobuf.proto";
+
+message AwemeStatusStructV2{
+  string aweme_id = 1;
+  bool is_delete = 2;
+  bool allow_share = 3;
+  bool allow_comment = 4;
+  int32 private_status = 7;
+  bool in_reviewing = 9;
+  int32 reviewed = 10;
+  bool self_see = 11;
+  bool is_prohibited = 12;
+  int32 download_status = 13;
+  int32 dont_share_status = 14;
+  int32 video_hide_search = 15;
+  VideoMuteStructV2 video_mute = 16;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message AutoCaptionTypeV2{
+  string language = 1;
+  string uri = 2;
+  UrlStructV2 url = 3;
+}

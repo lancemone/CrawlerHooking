@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message RFansGroupInfoV2{
+  string schema = 1;
+  string token = 2;
+  string download_url = 3;
+}

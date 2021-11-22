@@ -1,0 +1,15 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/TextContentStructV2Protobuf.proto";
+import "aweme/ActivityButtonStructV2Protobuf.proto";
+
+message AwemeActivityStructV2{
+  string activity_id = 1;
+  int64 show_delay_time = 2;
+  string schema_url = 3;
+  TextContentStructV2 content = 4;
+  ActivityButtonStructV2 primary_btn = 5;
+}

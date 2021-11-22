@@ -1,0 +1,21 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+import "aweme/HitTaskInfoV2Protobuf.proto";
+
+message SimpleUserStructV2{
+  string     uid = 1;
+  string     nickname = 2;
+  string     signature = 3;
+  UrlStructV2     avatar_thumb = 4;
+  int32     follow_status = 5;
+  int32     status = 6;
+  int32     user_rate = 7;
+  UrlStructV2     avatar_larger = 8;
+  HitTaskInfoV2     hit_task_info = 9;
+  string     unique_id = 10;
+  string     sec_uid = 11;
+}

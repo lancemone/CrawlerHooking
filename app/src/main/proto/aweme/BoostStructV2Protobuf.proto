@@ -1,0 +1,11 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message BoostStructV2{
+  int32 boost_type = 1;
+  string label = 2;
+  string color = 3;
+  string color_text = 4;
+}

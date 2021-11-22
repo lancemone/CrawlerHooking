@@ -1,0 +1,13 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+message OriginalMusicianStructV2{
+  int32 music_count = 1;
+  int32 music_used_count = 2;
+  UrlStructV2 music_qrcode_url = 3;
+  UrlStructV2 music_cover_url = 4;
+  int32 digg_count = 5;
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message MutualUserStructV2{
+  string sec_uid = 1;
+  string nickname = 2;
+  UrlStructV2 avatar_medium = 3;
+}

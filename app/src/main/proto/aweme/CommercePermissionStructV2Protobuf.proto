@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message CommercePermissionStructV2{
+  int32 top_item = 1;
+  int32 ad_link = 2;
+  int32 star_atlas_order = 3;
+}

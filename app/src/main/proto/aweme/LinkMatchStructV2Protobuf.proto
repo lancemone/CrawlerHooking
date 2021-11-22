@@ -1,0 +1,16 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/MatchInfoStructV2Protobuf.proto";
+import "aweme/CaptionInfoStructV2Protobuf.proto";
+import "aweme/CaptionAnchorStructV2Protobuf.proto";
+
+message LinkMatchStructV2{
+  int32 total_limit = 1;
+  int32 query_limit = 2;
+  repeated MatchInfoStructV2 match_info = 3;
+  CaptionInfoStructV2 caption_info = 4;
+  CaptionAnchorStructV2 caption_anchor = 5;
+}

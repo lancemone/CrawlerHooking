@@ -1,0 +1,13 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message ImageInfoStructV2{
+  int32 height = 1;
+  int32 width = 2;
+  UrlStructV2 label_large = 3;
+  UrlStructV2 label_thumb = 4;
+}

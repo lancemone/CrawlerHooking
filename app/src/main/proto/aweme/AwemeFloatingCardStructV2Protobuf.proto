@@ -1,0 +1,16 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message AwemeFloatingCardStructV2{
+  string schema = 1;
+  string schema_desc = 2;
+  repeated UrlStructV2 icons = 3;
+  string title = 4;
+  string description = 5;
+  string button_desc = 6;
+  UrlStructV2 button_bg = 7;
+}

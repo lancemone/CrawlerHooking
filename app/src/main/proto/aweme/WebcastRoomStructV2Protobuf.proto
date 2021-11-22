@@ -1,0 +1,39 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UserStructV2Protobuf.proto";
+import "aweme/ShareStructV2Protobuf.proto";
+import "aweme/UrlStructV2Protobuf.proto";
+import "aweme/StreamUrlStructV2Protobuf.proto";
+
+message WebcastRoomStructV2{
+  int64 room_id = 1;
+  int32 status = 2;
+  UserStructV2 owner = 3;
+  string title = 4;
+  int32 user_count = 5;
+  int64 create_time = 6;
+  int64 finish_time = 7;
+  int64 stream_id = 8;
+  StreamUrlStructV2 stream_url = 9;
+  ShareStructV2 share_info = 10;
+  int32 digg_count = 11;
+  int32 total_user_count = 12;
+  bool in_sandbox = 14;
+  UrlStructV2 dynamic_cover = 15;
+  UrlStructV2 room_cover = 16;
+  string room_type_tag = 17;
+  StreamUrlStructV2 additional_stream_url = 18;
+  UrlStructV2 webp_cover = 19;
+  string extra = 20;
+  bool live_type_audio = 21;
+  bool live_type_third_party = 22;
+  bool live_type_screenshot = 23;
+  bool live_type_official = 24;
+  bool live_type_normal = 25;
+  bool live_type_linkmic = 26;
+  bool live_type_sandbox = 27;
+  bool with_linkmic = 28;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/LinkUserInfoStructV2Protobuf.proto";
+
+message CommerceUserStructV2{
+  int32 star_atlas = 1;
+  bool show_star_atlas_cooperation = 2;
+  bool has_ads_entry = 3;
+  LinkUserInfoStructV2 link_user_info = 4;
+  int32 ad_influencer_type = 5;
+}

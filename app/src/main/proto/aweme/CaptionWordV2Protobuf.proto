@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message CaptionWordV2{
+  string text = 1;
+  int64 start_time = 2;
+  int64 end_time = 3;
+}

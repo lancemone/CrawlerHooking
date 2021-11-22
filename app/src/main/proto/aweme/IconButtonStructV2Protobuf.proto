@@ -1,0 +1,13 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/UrlStructV2Protobuf.proto";
+
+message IconButtonStructV2{
+  string text = 1;
+  UrlStructV2 icon = 2;
+  string action = 3;
+}
+

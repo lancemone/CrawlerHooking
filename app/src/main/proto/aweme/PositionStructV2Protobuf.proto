@@ -1,0 +1,9 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message PositionStructV2{
+  int32 begin = 1;
+  int32 end = 2;
+}

@@ -13,6 +13,8 @@ import com.more.crawlerhooking.utils.LogUtils;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HttpRequest {
@@ -43,5 +45,22 @@ public class HttpRequest {
                 LogUtils.e(fail);
             }
         }, ResponseBean.class);
+    }
+
+    public static void AwemeFeedResponseProtobufReport(byte[] bytes){
+        String url = Common.CrawlerReportHost + "/api/v1/aweme/feed";
+        RequestBody requestBody = RequestBody.create(bytes, MediaType.parse("application/x-protobuf"));
+        Map<String, String> headers = new HashMap<String, String>();
+        headers.put("version", BuildConfig.VERSION_NAME);
+        RequestMode.postRequest(url, requestBody, headers, new ResponseCallback() {
+            @Override
+            public void onSuccess(Object response) {
+                LogUtils.i("AwemeFeedResponseProtobufReport: " + response.toString());
+            }
+
+            @Override
+            public void onFailure(OkHttpException fail) {
+            }
+        }, null);
     }
 }

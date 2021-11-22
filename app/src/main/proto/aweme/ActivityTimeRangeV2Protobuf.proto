@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+message ActivityTimeRangeV2{
+  double start = 1;
+  double end = 2;
+  double duration = 3;
+}

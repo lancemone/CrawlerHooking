@@ -1,0 +1,15 @@
+syntax = "proto3";
+package proto.aweme;
+option java_package = "com.more.crawlerhooking.protobuf.aweme";
+
+
+import "aweme/VoteOptionStructV2Protobuf.proto";
+
+message VoteStructV2{
+  int64 vote_id = 1;
+  int64 ref_id = 2;
+  int32 ref_type = 3;
+  string question = 4;
+  repeated VoteOptionStructV2 options = 5;
+  int64 select_option_id = 6;
+}
