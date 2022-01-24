@@ -1,18 +1,14 @@
 package com.more.crawlerhooking.http.okhttp;
 
-import com.more.crawlerhooking.utils.LogUtils;
-
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
-import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 
 public class HttpClientHelper {
 
-    private static final int TIME_OUT = 30;
+    private static final int TIME_OUT = 60;
 
     private static final OkHttpClient mOkHttpClient;
 
@@ -26,7 +22,9 @@ public class HttpClientHelper {
         builder.connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .writeTimeout(TIME_OUT, TimeUnit.SECONDS)
-                .addNetworkInterceptor(new RequestLogInterceptor())
+                .retryOnConnectionFailure(true)
+                .addInterceptor(new RequestLogInterceptor())
+                .addNetworkInterceptor(new ParamsInterceptor())
                 .followRedirects(true);
         mOkHttpClient = builder.build();
     }

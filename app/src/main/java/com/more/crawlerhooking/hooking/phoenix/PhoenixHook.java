@@ -1,10 +1,17 @@
 package com.more.crawlerhooking.hooking.phoenix;
 
-import com.more.crawlerhooking.Common;
+import android.app.Application;
+import android.content.Context;
+
+import com.more.crawlerhooking.Constants;
+import com.more.crawlerhooking.conf.PhoenixConfig;
+import com.more.crawlerhooking.hooking.XpBroadcast;
 import com.more.crawlerhooking.http.HttpRequest;
-import com.more.crawlerhooking.http.beans.PhoenixReportBean;
+import com.more.crawlerhooking.http.ICrawlerSource;
+import com.more.crawlerhooking.http.beans.CrawlerReportDataBean;
+import com.more.crawlerhooking.http.beans.PhoenixOriginDataBean;
+import com.more.crawlerhooking.http.beans.ReportDataBean;
 import com.more.crawlerhooking.utils.LogUtils;
-import com.more.crawlerhooking.utils.StringUtils;
 import com.more.crawlerhooking.utils.UrlUtils;
 
 import java.io.ByteArrayInputStream;
@@ -13,7 +20,6 @@ import java.io.ObjectInputStream;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -26,18 +32,18 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class PhoenixHook {
 
     private final String device;
-    private final String country;
     private final String taskTurn;
     private String lastTitle = "";
+    private Context context;
 
     public PhoenixHook(XC_LoadPackage.LoadPackageParam loadPackageParam, XSharedPreferences prefs){
-        this.device = prefs.getString(Common.SerialNoKey, "");
-        this.country = prefs.getString(Common.PhoenixCountryKey, "");
-        this.taskTurn = prefs.getString(Common.TaskTurnKey, "");
+        LogUtils.i(prefs.getFile().getName() + " can read: " + prefs.getFile().canRead());
+        this.device = prefs.getString(Constants.SerialNoKey, "");
+        LogUtils.i("crawler device: " + device);
+        this.taskTurn = prefs.getString(Constants.TaskTurnKey, "");
+        LogUtils.i("crawler task turn: " + taskTurn);
+        getContext();
         hookQbUrl(loadPackageParam);
-//        hookVideoReturn(loadPackageParam);
-//        hookFeedsDataManager(loadPackageParam);
-//        hookC70m(loadPackageParam);
     }
 
 
@@ -52,38 +58,82 @@ public class PhoenixHook {
                     if (result != null){
                         String qbUrl = result.toString();
                         qbUrl = URLDecoder.decode(qbUrl, "utf-8");
-//                        LogUtils.i("decode qbUrl: " + qbUrl);
                         Map<String, String> params = UrlUtils.getUrlAllParams(qbUrl);
-//                        LogUtils.i("params: " + params.toString());
                         String title = params.get("title");
                         String publisher = params.get("publisher");
                         if (lastTitle.equals(title+publisher)){
                             return;
                         }
                         lastTitle = title + publisher;
-                        PhoenixReportBean.ReportDataBean reportData = new PhoenixReportBean.ReportDataBean();
-                        reportData.setDeviceId(device);
-                        reportData.setDeviceCountry(country);
-                        reportData.setTaskTurn(taskTurn);
-                        reportData.setVid(params.get("vid"));
-                        reportData.setTitle(title);
-                        reportData.setPlayUrl(params.get("playUrl"));
-                        reportData.setOptPlayUrl(params.get("optPlayUrl"));
-                        reportData.setPicUrl(params.get("picUrl"));
-                        reportData.setPublisher(publisher);
-                        reportData.setFrom(params.get("from"));
-                        reportData.setTag(params.get("tag"));
-                        reportData.setCommentCount(Integer.parseInt(params.get("commentCount")));
-                        reportData.setDownloadCount(Integer.parseInt(params.get("downloadCount")));
-                        reportData.setShareCount(Integer.parseInt(params.get("shareCount")));
-                        reportData.setLikeCount(Integer.parseInt(params.get("praiseCount")));
-                        reportData.setViewCount(Integer.parseInt(params.get("view")));
-                        PhoenixReportBean phoenixReport = new PhoenixReportBean(reportData);
+                        ReportDataBean reportDataBean = new ReportDataBean();
+                        PhoenixOriginDataBean originDataBean = new PhoenixOriginDataBean();
+                        originDataBean.setVid(params.get("vid"));
+                        originDataBean.setTitle(title);
+                        originDataBean.setPlayUrl(params.get("playUrl"));
+                        originDataBean.setOptPlayUrl(params.get("optPlayUrl"));
+                        originDataBean.setPicUrl(params.get("picUrl"));
+                        originDataBean.setPublisher(publisher);
+                        originDataBean.setFrom(params.get("from"));
+                        originDataBean.setTag(params.get("tag"));
+                        Object commentCount = params.get("commentCount");
+                        if (commentCount != null){
+                            originDataBean.setCommentCount(Integer.parseInt(commentCount.toString()));
+                        }else {
+                            originDataBean.setCommentCount(0);
+                        }
+                        Object downloadCount = params.get("downloadCount");
+                        if (downloadCount != null){
+                            originDataBean.setDownloadCount(Integer.parseInt(downloadCount.toString()));
+                        }else {
+                            originDataBean.setDownloadCount(0);
+                        }
+                        Object shareCount = params.get("shareCount");
+                        if (shareCount != null){
+                            originDataBean.setShareCount(Integer.parseInt(shareCount.toString()));
+                        }else {
+                            originDataBean.setShareCount(0);
+                        }
+                        Object praiseCount = params.get("praiseCount");
+                        if (praiseCount != null){
+                            originDataBean.setLikeCount(Integer.parseInt(praiseCount.toString()));
+                        }else {
+                            originDataBean.setLikeCount(0);
+                        }
+                        Object viewCount = params.get("view");
+                        if (viewCount != null){
+                            originDataBean.setViewCount(Integer.parseInt(viewCount.toString()));
+                        }else {
+                            originDataBean.setViewCount(0);
+                        }
+                        reportDataBean.setDeviceId(device);
+                        String country = PhoenixConfig.deviceToRegion.get(device)[0];
+                        String language = PhoenixConfig.deviceToRegion.get(device)[1];
+                        reportDataBean.setDeviceCountry(country);
+                        reportDataBean.setDeviceLanguage(language);
+                        reportDataBean.setTaskTurn(taskTurn);
+                        reportDataBean.setForyou(0);
+                        reportDataBean.setId(params.get("vid"));
+                        reportDataBean.setOriginData(originDataBean);
+                        CrawlerReportDataBean crawlerReportDataBean = new CrawlerReportDataBean(ICrawlerSource.PHOENIX, reportDataBean);
                         LogUtils.i("start CrawlerReportRecord");
-                        HttpRequest.CrawlerReportRecord(phoenixReport);
+//                        HttpRequest.CrawlerReportRecord(crawlerReportDataBean);
+                        XpBroadcast.sendCrawlerReportData(context, crawlerReportDataBean);
                     }
                 }
             });
+        }
+    }
+
+    public void getContext(){
+        if (context == null){
+            XposedHelpers.findAndHookMethod(Application.class, "attach",
+                    Context.class, new XC_MethodHook() {
+                        @Override
+                        protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                            super.afterHookedMethod(param);
+                            context = (Context) param.args[0];
+                        }
+                    });
         }
     }
 

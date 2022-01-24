@@ -1,41 +1,35 @@
 package com.more.crawlerhooking.utils;
 
-import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.more.crawlerhooking.BuildConfig;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LogUtils {
-
     public static final int VERBOSE = 1;
     public static final int DEBUG = 2;
     public static final int INFO = 3;
     public static final int WARN = 4;
     public static final int ERROR = 5;
-
+    public final static boolean ALLOW_LOG = BuildConfig.DEBUG;
     /**
      * json格式化显示的缩进字符数
      */
     private final static int JSON_INDENT = 4;
-
     private static final String TAG = "AppCrawler";
-
     /**
      * log输出等级
      */
     private static final int level = DEBUG;
-
     /**
      * 行分隔符
      */
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
-
     /**
      * 单条log最大输出限制，超出会自动分段处理；
      * <p>
@@ -43,14 +37,8 @@ public class LogUtils {
      */
     private static final int MAX_SINGLE_LOG_LENGTH = 3 * 1024;
 
-    public final static boolean ALLOW_LOG = true;
 
-    private static final boolean saveLog = false;
-
-    private static String cacheDirPath;
-
-    private LogUtils(){
-        throw new UnsupportedOperationException("cannot be instantiated");
+    private LogUtils() {
     }
 
     public static void i(Object str) {
@@ -83,9 +71,6 @@ public class LogUtils {
     }
 
     public static void d(String tag, Object str) {
-        if (ALLOW_LOG) {
-            return;
-        }
         String name = getFunctionName();
         tag = getTag(tag);
         log(DEBUG, tag, name + " - " + str);
@@ -138,7 +123,7 @@ public class LogUtils {
     }
 
     private static String getTag(String tag) {
-        if (tag == null){
+        if (tag == null) {
             return TAG;
         }
         return TAG + "-" + tag;

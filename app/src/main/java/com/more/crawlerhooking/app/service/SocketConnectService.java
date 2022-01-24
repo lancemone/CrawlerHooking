@@ -9,9 +9,9 @@ import androidx.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.more.crawlerhooking.Common;
-import com.more.crawlerhooking.utils.LogUtils;
+import com.more.crawlerhooking.Constants;
 import com.more.crawlerhooking.utils.SPUtils;
+import com.orhanobut.logger.Logger;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -20,7 +20,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 
@@ -40,12 +39,12 @@ public class SocketConnectService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        LogUtils.i("SocketConnectService create");
+        Logger.i("SocketConnectService create");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        LogUtils.i("SocketConnectService onStartCommand ");
+        Logger.i("SocketConnectService onStartCommand ");
         mainThreadFlag = true;
         new Thread(){
             @Override
@@ -62,7 +61,7 @@ public class SocketConnectService extends Service {
         // 关闭线程
         mainThreadFlag = false;
         ioThreadFlag = false;
-        LogUtils.i(Thread.currentThread().getName() + "-- SocketConnectService close");
+        Logger.i(Thread.currentThread().getName() + "-- SocketConnectService close");
         if (serverSocket != null){
             try {
                 serverSocket.close();
@@ -79,7 +78,7 @@ public class SocketConnectService extends Service {
         serverSocket = null;
         try {
             serverSocket = new ServerSocket(SERVER_PORT);
-            LogUtils.i("start listening socket port: " + SERVER_PORT);
+            Logger.i("start listening socket port: " + SERVER_PORT);
             while (mainThreadFlag){
                 Socket socket = serverSocket.accept();
                 new Thread(new ThreadReadWriterIOSocket(this, socket)).start();
@@ -102,7 +101,7 @@ public class SocketConnectService extends Service {
         @Override
         public void run() {
 
-            LogUtils.i("client has connected to socket server");
+            Logger.i("client has connected to socket server");
             BufferedOutputStream outputStream;
             BufferedInputStream inputStream;
             String msgFromClient = "";
@@ -114,9 +113,9 @@ public class SocketConnectService extends Service {
                     if (!client.isConnected()){
                         break;
                     }
-                    LogUtils.i(Thread.currentThread().getName() + "--- start read data from connected client");
+                    Logger.i(Thread.currentThread().getName() + "--- start read data from connected client");
                     msgFromClient = readMsgFromSocket(inputStream);
-                    LogUtils.i(Thread.currentThread().getName() + "--- msg from client: " + msgFromClient);
+                    Logger.i(Thread.currentThread().getName() + "--- msg from client: " + msgFromClient);
                     String result = handleMsgWithJson(msgFromClient);
                     outputStream.write(result.getBytes());
                     outputStream.flush();
@@ -128,11 +127,11 @@ public class SocketConnectService extends Service {
             }finally {
                 try {
                     if (client != null){
-                        LogUtils.i(Thread.currentThread().getName() + "--- connected client close");
+                        Logger.i(Thread.currentThread().getName() + "--- connected client close");
                         client.close();
                     }
                 } catch (IOException e) {
-                    LogUtils.i(Thread.currentThread().getName() + "--- read data from connected client error");
+                    Logger.i(Thread.currentThread().getName() + "--- read data from connected client error");
                     e.printStackTrace();
                 }
             }
@@ -146,9 +145,9 @@ public class SocketConnectService extends Service {
                 int numReadBytes = inputStream.read(tempBuffer, 0, tempBuffer.length);
                 msg = new String(tempBuffer, 0, numReadBytes, StandardCharsets.UTF_8);
                 tempBuffer = null;
-                LogUtils.i(Thread.currentThread().getName() + "--- read data from connected client successful");
+                Logger.i(Thread.currentThread().getName() + "--- read data from connected client successful");
             } catch (IOException e) {
-                LogUtils.i(Thread.currentThread().getName() + "--- read data from connected client error");
+                Logger.i(Thread.currentThread().getName() + "--- read data from connected client error");
                 e.printStackTrace();
             }
             return msg;
@@ -168,11 +167,11 @@ public class SocketConnectService extends Service {
                     Map msgMap = new Gson().fromJson(msg, Map.class);
                     if (msgMap.containsKey("device_serial")){
                         String deviceSerial = (String) msgMap.get("device_serial");
-                        SPUtils.getInstance().setString(Common.SerialNoKey, deviceSerial);
+                        SPUtils.getInstance().setString(Constants.SerialNoKey, deviceSerial);
                     }
                     if (msgMap.containsKey("task_turn")){
                         String taskTurn = (String) msgMap.get("task_turn");
-                        SPUtils.getInstance().setString(Common.TaskTurnKey, taskTurn);
+                        SPUtils.getInstance().setString(Constants.TaskTurnKey, taskTurn);
                     }
                     resultMap.put("code", 200);
                     resultMap.put("error", "");

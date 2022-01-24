@@ -1,14 +1,10 @@
 package com.more.crawlerhooking.hooking.common.okhttp;
 
-import android.util.Log;
-
-import com.more.crawlerhooking.Main;
-import com.more.crawlerhooking.conf.OKHttpConfig;
+import com.google.gson.GsonBuilder;
+import com.more.crawlerhooking.conf.okhttp.OKHttpConfig;
 import com.more.crawlerhooking.utils.LogUtils;
 import com.more.crawlerhooking.utils.StringUtils;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -107,7 +103,7 @@ public class RealCallHook {
             LogUtils.w("Response not find request object");
         }
         if (!responseInfo.isEmpty()){
-            LogUtils.json(responseInfo);
+            LogUtils.json(new GsonBuilder().serializeNulls().create().toJson(responseInfo));
         }
     }
 

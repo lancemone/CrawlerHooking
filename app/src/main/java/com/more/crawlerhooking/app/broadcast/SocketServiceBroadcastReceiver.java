@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.more.crawlerhooking.app.service.SocketConnectService;
-import com.more.crawlerhooking.utils.LogUtils;
+import com.orhanobut.logger.Logger;
 
 public class SocketServiceBroadcastReceiver extends BroadcastReceiver {
 
@@ -17,11 +17,11 @@ public class SocketServiceBroadcastReceiver extends BroadcastReceiver {
         String action = intent.getAction();
         if (START_ACTION.equalsIgnoreCase(action)){
             context.startService(new Intent(context, SocketConnectService.class));
-            LogUtils.i(Thread.currentThread().getName()+"------>" + "onReceive SocketConnectService start");
+            Logger.i(Thread.currentThread().getName()+"------>" + "onReceive SocketConnectService start");
         }
         if (STOP_ACTION.equalsIgnoreCase(action)){
             context.stopService(new Intent(context, SocketConnectService.class));
-            LogUtils.i(Thread.currentThread().getName()+"------>" + "onReceive SocketConnectService stop");
+            Logger.i(Thread.currentThread().getName()+"------>" + "onReceive SocketConnectService stop");
         }
     }
 }

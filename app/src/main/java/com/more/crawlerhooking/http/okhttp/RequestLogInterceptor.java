@@ -3,18 +3,16 @@ package com.more.crawlerhooking.http.okhttp;
 import androidx.annotation.NonNull;
 
 import com.more.crawlerhooking.utils.LogUtils;
+import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Locale;
 import java.util.Objects;
 
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.MultipartReader;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -68,7 +66,7 @@ public class RequestLogInterceptor implements Interceptor {
                     .concat("\n ")
                     .concat("Response Result-->：")
                     .concat(responseBody != null ? responseBody : "");
-            LogUtils.i(logInfo);
+            Logger.i(logInfo);
             }
         return response;
     }
@@ -90,7 +88,7 @@ public class RequestLogInterceptor implements Interceptor {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Logger.e(e, "get response text error", response.request().url().toString());
         }
         return responseText;
     }
@@ -115,7 +113,7 @@ public class RequestLogInterceptor implements Interceptor {
                     }
             }
             } catch (IOException e) {
-                e.printStackTrace();
+                Logger.e(e, "get request body error", request.url().toString());;
             }
         return requestContent;
     }

@@ -1,10 +1,7 @@
 package com.more.crawlerhooking.hooking.common.okhttp;
 
-import com.more.crawlerhooking.conf.OKHttpConfig;
+import com.more.crawlerhooking.conf.okhttp.OKHttpConfig;
 import com.more.crawlerhooking.utils.LogUtils;
-
-import java.util.Arrays;
-import java.util.regex.Pattern;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;

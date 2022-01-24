@@ -3,6 +3,7 @@ package com.more.crawlerhooking.http.okhttp;
 import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
+import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -33,7 +34,7 @@ public class CommonJsonCallback implements Callback {
 
     @Override
     public void onFailure(@NonNull Call call, @NonNull IOException e) {
-        mListener.onFailure(new OkHttpException(NETWORK_ERROR, e.getMessage()));
+        mListener.onFailure(new OkHttpException(NETWORK_ERROR, e.toString()));
     }
 
     /**
@@ -56,7 +57,6 @@ public class CommonJsonCallback implements Callback {
             }
         }catch (Exception e){
             mListener.onFailure(new OkHttpException(OTHER_ERROR, e.getMessage()));
-            e.printStackTrace();
         }
     }
 }

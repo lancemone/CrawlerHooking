@@ -9,10 +9,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.more.crawlerhooking.AppApplication;
-import com.more.crawlerhooking.Common;
+import com.more.crawlerhooking.Constants;
 import com.more.crawlerhooking.conf.TiktokConfig;
 import com.more.crawlerhooking.utils.LogUtils;
 import com.more.crawlerhooking.utils.SPUtils;
+import com.orhanobut.logger.Logger;
 
 public class HomeViewModel extends ViewModel {
 
@@ -54,12 +55,12 @@ public class HomeViewModel extends ViewModel {
     }
 
     private String getSystemAndroidId(){
-        String androidId = SPUtils.getInstance().getString(Common.AndroidIdKey, null);
+        String androidId = SPUtils.getInstance().getString(Constants.AndroidIdKey, null);
         if (androidId == null){
             androidId = Settings.System.getString(AppApplication.getInstance().getContentResolver(), Settings.System.ANDROID_ID);
-            SPUtils.getInstance().setString(Common.AndroidIdKey, androidId);
+            SPUtils.getInstance().setString(Constants.AndroidIdKey, androidId);
         }
-        LogUtils.i("android id: " + androidId);
+        Logger.i("android id: " + androidId);
         return androidId;
     }
 
@@ -67,21 +68,21 @@ public class HomeViewModel extends ViewModel {
         if (mTaskTurn == null){
             mTaskTurn = new MutableLiveData<>();
         }
-        String task = SPUtils.getInstance().getString(Common.TaskTurnKey, "null");
+        String task = SPUtils.getInstance().getString(Constants.TaskTurnKey, "null");
         mTaskTurn.setValue(task);
     }
 
     private String getSerial(String androidId){
-        String serialNo = SPUtils.getInstance().getString(Common.SerialNoKey, null);
+        String serialNo = SPUtils.getInstance().getString(Constants.SerialNoKey, null);
         if (serialNo == null){
             try {
                 serialNo = TiktokConfig.AndroidIdToSerial.get(androidId);
             }catch (NullPointerException e){
                 LogUtils.e(e.getMessage());
             }
-            SPUtils.getInstance().setString(Common.SerialNoKey, serialNo);
+            SPUtils.getInstance().setString(Constants.SerialNoKey, serialNo);
         }
-        LogUtils.i("serial number: " + serialNo);
+        Logger.i("serial number: " + serialNo);
         return serialNo;
     }
 

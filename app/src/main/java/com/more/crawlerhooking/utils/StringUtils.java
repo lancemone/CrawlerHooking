@@ -1,7 +1,6 @@
 package com.more.crawlerhooking.utils;
 
 import android.os.Build;
-import android.util.Xml;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -11,12 +10,12 @@ import java.util.List;
 
 public class StringUtils {
 
-    public static boolean notNUll(String str) {
+    public static boolean notNull(String str) {
         return str == null || str.length() == 0;
     }
 
     public static boolean equal(String str, String str2) {
-        if (notNUll(str) && notNUll(str2)) {
+        if (notNull(str) && notNull(str2)) {
             return true;
         }
         return str != null && str.equals(str2);

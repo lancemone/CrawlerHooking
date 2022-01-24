@@ -16,6 +16,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.more.crawlerhooking.app.view.DetailInfoView;
 import com.more.crawlerhooking.databinding.FragmentHomeBinding;
 
+import java.util.Locale;
+import java.util.TimeZone;
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
@@ -29,6 +32,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         initView();
+        TimeZone.getDefault().getDisplayName();
         return root;
     }
 

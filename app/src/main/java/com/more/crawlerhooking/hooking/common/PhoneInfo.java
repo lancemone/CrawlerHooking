@@ -1,17 +1,11 @@
 package com.more.crawlerhooking.hooking.common;
 
 
-import android.util.Log;
-
 import com.more.crawlerhooking.conf.HookingConfig;
 import com.more.crawlerhooking.conf.TiktokConfig;
 import com.more.crawlerhooking.utils.LogUtils;
-import com.orhanobut.logger.Logger;
-
-import java.net.HttpURLConnection;
 
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 

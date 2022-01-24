@@ -30,10 +30,15 @@ public class RegexUtils {
         String uri = getUriFromUrl(url);
         for (String reg1 : NO_MATCH_HOST){
             if (Pattern.matches(reg1, uri)){
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
+    }
+
+    public static boolean urlMatchAwemeFeed(String url){
+        String uri = getUriFromUrl(url);
+        return Pattern.matches(".*aweme/v2/feed.*", uri);
     }
 
     public static String getUriFromUrl(String url){
